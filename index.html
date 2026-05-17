@@ -55,16 +55,18 @@
     position: relative;
     background: linear-gradient(180deg, rgba(236,72,153,0.05) 0%, transparent 100%);
     overflow-y: auto;
+    z-index: 2;
   }
 
   #rainContainer {
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 60%;
+    width: 40%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
+    overflow: hidden;
   }
 
   #game.shake { animation: shake 0.22s linear 1; }
@@ -745,7 +747,7 @@
   function canBuyUpgrade(upg)        { return state.candyOrbs >= upg.cost && upg.requires.every(isRequirementMet); }
   function canBuyPrestigeUpgrade(upg){ return state.prestigePoints >= upg.cost && upg.requires.every(isRequirementMet); }
 
-  // ── WATERFALL SYSTEM ────────────────────────────────────────────────────
+  // ── CANDY COLORS FOR WATERFALL ─────────────────────────────────────────
   const candyColors = [
     { grad1: '#ec4899', grad2: '#c73b8e', grad3: '#7a1f4f' }, // Pink
     { grad1: '#a78bfa', grad2: '#8b5cf6', grad3: '#5b21b6' }, // Purple
@@ -757,98 +759,97 @@
     { grad1: '#3b82f6', grad2: '#1d4ed8', grad3: '#1e3a8a' }, // Blue
   ];
 
+  // ── WATERFALL SYSTEM ────────────────────────────────────────────────────
   function spawnWaterfall() {
-    if (state.candyOrbs < 1000) return;
+    if (state.totalEarned < 1000) return;
     
     let intensity = 0;
-    if (state.candyOrbs >= 1e63) intensity = 50;      // Vigintillion
-    else if (state.candyOrbs >= 1e60) intensity = 50; // Novemdecillion
-    else if (state.candyOrbs >= 1e57) intensity = 50; // Octodecillion
-    else if (state.candyOrbs >= 1e54) intensity = 50; // Septendecillion
-    else if (state.candyOrbs >= 1e51) intensity = 50; // Sexdecillion
-    else if (state.candyOrbs >= 1e48) intensity = 50; // Quindecillion
-    else if (state.candyOrbs >= 1e45) intensity = 50; // Quattuordecillion
-    else if (state.candyOrbs >= 1e42) intensity = 48; // Tredecillion
-    else if (state.candyOrbs >= 1e39) intensity = 48; // Duodecillion
-    else if (state.candyOrbs >= 1e36) intensity = 48; // Undecillion
-    else if (state.candyOrbs >= 1e33) intensity = 48; // Decillion
-    else if (state.candyOrbs >= 1e30) intensity = 46; // Nonillion
-    else if (state.candyOrbs >= 1e27) intensity = 46; // Octillion
-    else if (state.candyOrbs >= 1e24) intensity = 46; // Septillion
-    else if (state.candyOrbs >= 1e21) intensity = 44; // Sextillion
-    else if (state.candyOrbs >= 1e18) intensity = 42; // Quintillion
-    else if (state.candyOrbs >= 1e15) intensity = 40; // Quadrillion
-    else if (state.candyOrbs >= 1e12) intensity = 38; // Trillion
-    else if (state.candyOrbs >= 1e9) intensity = 36;  // Billion
-    else if (state.candyOrbs >= 1e6) intensity = 30;  // Million
-    else if (state.candyOrbs >= 1e3) intensity = 20;  // Thousand
+    if (state.totalEarned >= 1e63) intensity = 50;      // Vigintillion
+    else if (state.totalEarned >= 1e60) intensity = 50; // Novemdecillion
+    else if (state.totalEarned >= 1e57) intensity = 50; // Octodecillion
+    else if (state.totalEarned >= 1e54) intensity = 50; // Septendecillion
+    else if (state.totalEarned >= 1e51) intensity = 50; // Sexdecillion
+    else if (state.totalEarned >= 1e48) intensity = 50; // Quindecillion
+    else if (state.totalEarned >= 1e45) intensity = 50; // Quattuordecillion
+    else if (state.totalEarned >= 1e42) intensity = 48; // Tredecillion
+    else if (state.totalEarned >= 1e39) intensity = 48; // Duodecillion
+    else if (state.totalEarned >= 1e36) intensity = 48; // Undecillion
+    else if (state.totalEarned >= 1e33) intensity = 48; // Decillion
+    else if (state.totalEarned >= 1e30) intensity = 46; // Nonillion
+    else if (state.totalEarned >= 1e27) intensity = 46; // Octillion
+    else if (state.totalEarned >= 1e24) intensity = 46; // Septillion
+    else if (state.totalEarned >= 1e21) intensity = 44; // Sextillion
+    else if (state.totalEarned >= 1e18) intensity = 42; // Quintillion
+    else if (state.totalEarned >= 1e15) intensity = 40; // Quadrillion
+    else if (state.totalEarned >= 1e12) intensity = 38; // Trillion
+    else if (state.totalEarned >= 1e9) intensity = 36;  // Billion
+    else if (state.totalEarned >= 1e6) intensity = 30;  // Million
+    else if (state.totalEarned >= 1e3) intensity = 5;   // Thousand (just a few)
     
     if (intensity === 0) return;
     
-    for (let i = 0; i < intensity; i++) {
-      setTimeout(() => {
-        const x = Math.random() * window.innerWidth;
-        const y = -60;
-        const duration = 1.5 + Math.random() * 2;
-        const colorIdx = Math.floor(Math.random() * candyColors.length);
-        const colors = candyColors[colorIdx];
-        const size = 28 + Math.random() * 16;
-        
-        const drop = document.createElement("div");
-        drop.className = "raindrop";
-        drop.style.left = x + "px";
-        drop.style.top = y + "px";
-        drop.style.width = size + "px";
-        drop.style.height = size + "px";
-        drop.style.animation = `fall ${duration}s linear`;
-        
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("viewBox", "0 0 100 100");
-        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        
-        const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-        const grad = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
-        grad.setAttribute("id", `candy-grad-${i}`);
-        grad.setAttribute("cx", "35%");
-        grad.setAttribute("cy", "35%");
-        
-        const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop1.setAttribute("offset", "0%");
-        stop1.setAttribute("style", `stop-color:${colors.grad1};stop-opacity:1`);
-        
-        const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop2.setAttribute("offset", "70%");
-        stop2.setAttribute("style", `stop-color:${colors.grad2};stop-opacity:1`);
-        
-        const stop3 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop3.setAttribute("offset", "100%");
-        stop3.setAttribute("style", `stop-color:${colors.grad3};stop-opacity:1`);
-        
-        grad.appendChild(stop1);
-        grad.appendChild(stop2);
-        grad.appendChild(stop3);
-        defs.appendChild(grad);
-        svg.appendChild(defs);
-        
-        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle.setAttribute("cx", "50");
-        circle.setAttribute("cy", "50");
-        circle.setAttribute("r", "45");
-        circle.setAttribute("fill", `url(#candy-grad-${i})`);
-        svg.appendChild(circle);
-        
-        const highlight = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        highlight.setAttribute("cx", "35");
-        highlight.setAttribute("cy", "35");
-        highlight.setAttribute("r", "15");
-        highlight.setAttribute("fill", "rgba(255,255,255,0.3)");
-        svg.appendChild(highlight);
-        
-        drop.appendChild(svg);
-        rainContainer.appendChild(drop);
-        setTimeout(() => drop.remove(), duration * 1000);
-      }, i * 60);
-    }
+    // Only spawn one candy per frame to avoid overwhelming the DOM
+    const x = Math.random() * rainContainer.offsetWidth + rainContainer.offsetLeft - window.innerWidth * 0.6;
+    const y = -60;
+    const duration = 2 + Math.random() * 2.5;
+    const colorIdx = Math.floor(Math.random() * candyColors.length);
+    const colors = candyColors[colorIdx];
+    const size = 32 + Math.random() * 20;
+    
+    const drop = document.createElement("div");
+    drop.className = "raindrop";
+    drop.style.left = x + "px";
+    drop.style.top = y + "px";
+    drop.style.width = size + "px";
+    drop.style.height = size + "px";
+    drop.style.animation = `fall ${duration}s linear`;
+    
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    
+    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    const grad = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
+    const gradId = `candy-grad-${Date.now()}-${Math.random()}`;
+    grad.setAttribute("id", gradId);
+    grad.setAttribute("cx", "35%");
+    grad.setAttribute("cy", "35%");
+    
+    const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("style", `stop-color:${colors.grad1};stop-opacity:1`);
+    
+    const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop2.setAttribute("offset", "70%");
+    stop2.setAttribute("style", `stop-color:${colors.grad2};stop-opacity:1`);
+    
+    const stop3 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop3.setAttribute("offset", "100%");
+    stop3.setAttribute("style", `stop-color:${colors.grad3};stop-opacity:1`);
+    
+    grad.appendChild(stop1);
+    grad.appendChild(stop2);
+    grad.appendChild(stop3);
+    defs.appendChild(grad);
+    svg.appendChild(defs);
+    
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", "50");
+    circle.setAttribute("cy", "50");
+    circle.setAttribute("r", "45");
+    circle.setAttribute("fill", `url(#${gradId})`);
+    svg.appendChild(circle);
+    
+    const highlight = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    highlight.setAttribute("cx", "35");
+    highlight.setAttribute("cy", "35");
+    highlight.setAttribute("r", "15");
+    highlight.setAttribute("fill", "rgba(255,255,255,0.3)");
+    svg.appendChild(highlight);
+    
+    drop.appendChild(svg);
+    rainContainer.appendChild(drop);
+    setTimeout(() => drop.remove(), duration * 1000);
   }
 
   // ── AUDIO ────────────────────────────────────────────────────────────
@@ -943,7 +944,6 @@
 
     checkAchievements();
     updateHUD();
-    spawnWaterfall();
   }
 
   // ── BUY FUNCTIONS ─────────────────────────────────────────────────────
@@ -1441,6 +1441,7 @@
     state.totalEarned += cps / 10;
     updateHUD();
     checkAchievements();
+    spawnWaterfall();
   }, 100);
 
   // Auto save
