@@ -6,18 +6,18 @@
 <title>Candy Orb Idle</title>
 <style>
   :root {
-    --bg1: #0f0f1a;
-    --bg2: #07070d;
-    --panel: rgba(15,15,26,0.6);
-    --panel2: rgba(255,255,255,0.08);
+    --bg1: #0d0f16;
+    --bg2: #07080e;
+    --panel: rgba(10, 12, 18, 0.72);
+    --panel2: rgba(255,255,255,0.06);
     --text: #e8e8f0;
-    --muted: rgba(232,232,240,0.6);
-    --accent: #a78bfa;
-    --accent2: #ec4899;
+    --muted: rgba(232,232,240,0.62);
+    --accent: #8b7cf0;
+    --accent2: #b34b7d;
     --good: #6dff9a;
     --bad: #ff6b7d;
-    --border: rgba(167,139,250,0.2);
-    --gold: #fbbf24;
+    --border: rgba(167,139,250,0.18);
+    --gold: #f1c04d;
   }
 
   * { box-sizing: border-box; }
@@ -53,7 +53,7 @@
     justify-content: center;
     padding: 20px;
     position: relative;
-    background: linear-gradient(180deg, rgba(236,72,153,0.05) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(236,72,153,0.03) 0%, transparent 100%);
     overflow-y: auto;
     z-index: 2;
   }
@@ -95,7 +95,7 @@
     gap: 8px;
     padding: 14px 16px;
     border-bottom: 1px solid var(--border);
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.22);
     flex-wrap: wrap;
     width: 100%;
   }
@@ -105,8 +105,8 @@
     align-items: center;
     gap: 8px;
     font-weight: 700;
-    background: rgba(167,139,250,0.1);
-    border: 1px solid rgba(167,139,250,0.3);
+    background: rgba(167,139,250,0.08);
+    border: 1px solid rgba(167,139,250,0.26);
     border-radius: 6px;
     padding: 8px 14px;
     font-size: 0.95em;
@@ -121,23 +121,23 @@
   }
 
   .tab {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.04);
     color: var(--text);
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 8px 12px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: background 0.12s ease, border-color 0.12s ease;
     font-weight: 600;
     font-size: 0.9em;
   }
 
-  .tab:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+  .tab:hover { background: rgba(255,255,255,0.06); }
 
   .tab.active {
-    background: rgba(167,139,250,0.2);
-    border-color: rgba(167,139,250,0.5);
-    box-shadow: 0 0 12px rgba(167,139,250,0.1);
+    background: rgba(167,139,250,0.16);
+    border-color: rgba(167,139,250,0.42);
+    box-shadow: 0 0 10px rgba(167,139,250,0.08);
   }
 
   .panel {
@@ -154,14 +154,14 @@
   .panel::-webkit-scrollbar { width: 8px; }
   .panel::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
   .panel::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.2); border-radius: 4px; }
-  .panel::-webkit-scrollbar-thumb:hover { background: rgba(167,139,250,0.4); }
+  .panel::-webkit-scrollbar-thumb:hover { background: rgba(167,139,250,0.35); }
 
   .stats {
     margin: 12px auto;
     max-width: 520px;
     line-height: 1.6;
     padding: 14px;
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.035);
     border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 0.85em;
@@ -177,13 +177,13 @@
     cursor: pointer;
     user-select: none;
     -webkit-user-drag: none;
-    filter: drop-shadow(0 0 20px rgba(236,72,153,0.3));
-    transition: transform 0.1s cubic-bezier(0.34,1.56,0.64,1);
+    filter: drop-shadow(0 0 12px rgba(236,72,153,0.16));
+    transition: transform 0.08s ease;
     margin-bottom: 16px;
   }
 
-  .orb:active { transform: scale(0.92); }
-  .orb:hover { filter: drop-shadow(0 0 30px rgba(167,139,250,0.4)); }
+  .orb:active { transform: scale(0.96); }
+  .orb:hover { filter: drop-shadow(0 0 16px rgba(167,139,250,0.18)); }
 
   .main-btn {
     width: 100%;
@@ -193,25 +193,24 @@
     border-radius: 8px;
     cursor: pointer;
     color: var(--text);
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.07);
     border: 1px solid var(--border);
     text-align: left;
-    transition: all 0.12s cubic-bezier(0.34,1.56,0.64,1);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     font-weight: 600;
     font-size: 0.95em;
   }
 
   .main-btn:hover:not([disabled]) {
-    background: rgba(167,139,250,0.12);
-    border-color: rgba(167,139,250,0.4);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transform: translateY(-1px);
+    background: rgba(167,139,250,0.10);
+    border-color: rgba(167,139,250,0.36);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.22);
   }
 
-  .main-btn:active:not([disabled]) { transform: translateY(0) scale(0.98); }
-  .main-btn[disabled] { opacity: 0.35; cursor: not-allowed; }
-  .main-btn[disabled]:hover { background: rgba(255,255,255,0.08); border-color: var(--border); }
+  .main-btn:active:not([disabled]) { box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .main-btn[disabled] { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
+  .main-btn[disabled]:hover { background: rgba(255,255,255,0.07); border-color: var(--border); }
 
   .main-btn small {
     display: block;
@@ -224,16 +223,16 @@
 
   .main-btn.cant-afford { opacity: 0.5; }
   .main-btn.locked { opacity: 0.4; }
-  .main-btn.unlocked { border-color: rgba(109,255,154,0.3); }
+  .main-btn.unlocked { border-color: rgba(109,255,154,0.26); }
   .main-btn.available-prestige {
-    border-color: rgba(167,139,250,0.4);
-    background: rgba(167,139,250,0.1);
+    border-color: rgba(167,139,250,0.36);
+    background: rgba(167,139,250,0.08);
   }
 
   .section-title {
     margin: 14px 0 10px;
     font-size: 0.85em;
-    opacity: 0.8;
+    opacity: 0.85;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-weight: 700;
@@ -271,7 +270,7 @@
 
   @keyframes floatUp {
     0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-100px) scale(1.2) rotate(8deg); opacity: 0; }
+    100% { transform: translateY(-100px) scale(1.1) rotate(4deg); opacity: 0; }
   }
 
   .achievement {
@@ -283,12 +282,12 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     background: rgba(255,255,255,0.03);
-    transition: all 0.2s ease;
+    transition: background 0.12s ease, border-color 0.12s ease;
   }
 
   .achievement.done {
-    border-color: rgba(109,255,154,0.4);
-    background: rgba(109,255,154,0.08);
+    border-color: rgba(109,255,154,0.34);
+    background: rgba(109,255,154,0.06);
   }
 
   .achievement small { color: var(--muted); display: block; font-size: 0.85em; }
@@ -314,7 +313,7 @@
   .pill {
     display: inline-block;
     border: 1px solid var(--accent);
-    background: rgba(167,139,250,0.1);
+    background: rgba(167,139,250,0.08);
     padding: 4px 10px;
     border-radius: 4px;
     font-size: 0.8em;
@@ -332,7 +331,7 @@
     line-height: 1.6;
     margin-top: 12px;
     padding: 12px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.18);
     border-radius: 6px;
   }
 
@@ -342,19 +341,16 @@
     border-radius: 6px;
     padding: 10px;
     margin-bottom: 8px;
-    transition: all 0.2s ease;
+    transition: background 0.12s ease, border-color 0.12s ease;
   }
 
-  .building-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(167,139,250,0.4); }
-  .building-card.locked { opacity: 0.4; }
+  .building-card:hover { background: rgba(255,255,255,0.055); border-color: rgba(167,139,250,0.32); }
+  .building-card.locked { opacity: 0.5; }
 
   .building-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
   .building-name { font-weight: 700; font-size: 0.95em; }
   .building-count { color: var(--accent); font-weight: 700; font-size: 0.9em; }
   .building-stats { color: var(--muted); font-size: 0.85em; line-height: 1.4; }
-
-  .buy-multipliers { display: flex; gap: 6px; margin-bottom: 8px; }
-  .buy-multipliers button { flex: 1; padding: 8px; font-size: 0.85em; }
 
   .setting-line { display: flex; gap: 8px; flex-wrap: wrap; }
   .setting-line button { flex: 1 1 120px; }
@@ -379,7 +375,7 @@
     border-radius: 50%;
     background: var(--accent);
     cursor: pointer;
-    box-shadow: 0 0 8px rgba(167,139,250,0.4);
+    box-shadow: 0 0 8px rgba(167,139,250,0.25);
   }
 
   input[type="range"]::-moz-range-thumb {
@@ -388,21 +384,21 @@
     background: var(--accent);
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 8px rgba(167,139,250,0.4);
+    box-shadow: 0 0 8px rgba(167,139,250,0.25);
   }
 
   .raindrop {
     position: fixed;
     pointer-events: none;
     animation: fall linear forwards;
-    filter: drop-shadow(0 0 12px rgba(255,255,255,0.5)) drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.40)) drop-shadow(0 4px 8px rgba(0,0,0,0.35));
   }
 
   .raindrop svg {
     display: block;
     width: 100%;
     height: 100%;
-    filter: brightness(1.15) contrast(1.25);
+    filter: brightness(1.05) contrast(1.15);
   }
 
   @keyframes fall {
@@ -411,6 +407,31 @@
 
   .upgrades-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
   .upgrades-tabs button { flex: 1; padding: 8px 12px; font-size: 0.9em; }
+
+  .qty-toggle {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .qty-toggle .main-btn {
+    flex: 1 1 90px;
+    text-align: center;
+    padding: 10px 12px;
+    margin: 0;
+  }
+
+  .qty-toggle .main-btn.active {
+    background: rgba(167,139,250,0.16);
+    border-color: rgba(167,139,250,0.48);
+  }
+
+  .qty-hint {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.82em;
+    line-height: 1.4;
+  }
 
   @media (max-width: 1000px) {
     body { overflow: auto; }
@@ -547,7 +568,10 @@
     settings: document.getElementById("settings"),
   };
 
-  let buyMultiplier = 1;
+  const BUILDING_GROWTH = 1.15;
+  const BUILDING_GROWTH_DELTA = BUILDING_GROWTH - 1;
+
+  let buyMode = 1; // 1 | 10 | 100 | "max"
 
   const state = {
     candyOrbs: 0,
@@ -749,7 +773,42 @@
   }
 
   function getBuildingPrice(b) {
-    return Math.ceil(b.baseCost * Math.pow(1.15, b.count) * state.costMult);
+    return Math.ceil(b.baseCost * Math.pow(BUILDING_GROWTH, b.count) * state.costMult);
+  }
+
+  function getBuildingTotalCost(b, amount) {
+    amount = Math.max(0, Math.floor(Number(amount) || 0));
+    if (amount <= 0) return 0;
+    const startFactor = Math.pow(BUILDING_GROWTH, b.count);
+    const series = (Math.pow(BUILDING_GROWTH, amount) - 1) / BUILDING_GROWTH_DELTA;
+    return Math.ceil(b.baseCost * state.costMult * startFactor * series);
+  }
+
+  function getBuildingSellRefund(b, amount) {
+    amount = Math.max(0, Math.min(b.count, Math.floor(Number(amount) || 0)));
+    if (amount <= 0) return 0;
+    const startCount = b.count - amount;
+    const startFactor = Math.pow(BUILDING_GROWTH, startCount);
+    const series = (Math.pow(BUILDING_GROWTH, amount) - 1) / BUILDING_GROWTH_DELTA;
+    const totalPaid = b.baseCost * state.costMult * startFactor * series;
+    return Math.floor(totalPaid * 0.5);
+  }
+
+  function getMaxAffordableCount(b) {
+    const funds = state.candyOrbs;
+    if (!isFinite(funds) || funds <= 0) return 0;
+    const startFactor = Math.pow(BUILDING_GROWTH, b.count);
+    const a = (b.baseCost * state.costMult * startFactor) / BUILDING_GROWTH_DELTA;
+    if (!isFinite(a) || a <= 0) return 0;
+    const rhs = funds / a + 1;
+    if (!isFinite(rhs) || rhs <= 1) return 0;
+    let n = Math.floor(Math.log(rhs) / Math.log(BUILDING_GROWTH));
+    n = Math.max(0, n);
+
+    // Correct for rounding in getBuildingTotalCost()
+    while (n > 0 && getBuildingTotalCost(b, n) > funds) n -= 1;
+    while (getBuildingTotalCost(b, n + 1) <= funds) n += 1;
+    return n;
   }
 
   function isRequirementMet(req) {
@@ -771,8 +830,46 @@
     }).join(", ");
   }
 
-  function canBuyBuilding(b)         { return !isBuildingLocked(b) && state.candyOrbs >= getBuildingPrice(b) * buyMultiplier; }
-  function isBuildingLocked(b)       { return b.unlockAt > 0 && state.totalEarned < b.unlockAt; }
+  function isBuildingLocked(b) { return b.unlockAt > 0 && state.totalEarned < b.unlockAt; }
+
+  function isFnDown(ev) {
+    try { return !!ev?.getModifierState?.("Fn"); } catch { return false; }
+  }
+
+  function getModeForEvent(ev) {
+    if (ev?.shiftKey || isFnDown(ev)) return "max";
+    if (ev?.altKey) return 100;
+    if (ev?.ctrlKey) return 10;
+    return buyMode;
+  }
+
+  function setBuyMode(mode) {
+    buyMode = mode;
+    renderShop();
+  }
+
+  function getResolvedBuyCount(b, mode) {
+    if (mode === "max") return getMaxAffordableCount(b);
+    return Math.max(1, Math.floor(Number(mode) || 1));
+  }
+
+  function getResolvedSellCount(b, mode) {
+    if (mode === "max") return b.count;
+    return Math.max(1, Math.floor(Number(mode) || 1));
+  }
+
+  function canBuyBuilding(b, mode) {
+    if (isBuildingLocked(b)) return false;
+    const n = getResolvedBuyCount(b, mode);
+    if (n <= 0) return false;
+    return state.candyOrbs >= getBuildingTotalCost(b, n);
+  }
+
+  function canSellBuilding(b, mode) {
+    const n = getResolvedSellCount(b, mode);
+    return b.count > 0 && n > 0;
+  }
+
   function canBuyUpgrade(upg)        { return state.candyOrbs >= upg.cost && upg.requires.every(isRequirementMet); }
   function canBuyPrestigeUpgrade(upg){ return state.prestigePoints >= upg.cost && upg.requires.every(isRequirementMet); }
 
@@ -790,33 +887,34 @@
 
   // ── WATERFALL SYSTEM ────────────────────────────────────────────────────
   function spawnWaterfall() {
-    if (state.totalEarned < 1000) return;
-    
+    // Activate based on current total (on-hand), not lifetime earned.
+    if (state.candyOrbs < 1000) return;
+
     let intensity = 0;
-    if (state.totalEarned >= 1e63) intensity = 50;      // Vigintillion
-    else if (state.totalEarned >= 1e60) intensity = 50; // Novemdecillion
-    else if (state.totalEarned >= 1e57) intensity = 50; // Octodecillion
-    else if (state.totalEarned >= 1e54) intensity = 50; // Septendecillion
-    else if (state.totalEarned >= 1e51) intensity = 50; // Sexdecillion
-    else if (state.totalEarned >= 1e48) intensity = 50; // Quindecillion
-    else if (state.totalEarned >= 1e45) intensity = 50; // Quattuordecillion
-    else if (state.totalEarned >= 1e42) intensity = 48; // Tredecillion
-    else if (state.totalEarned >= 1e39) intensity = 48; // Duodecillion
-    else if (state.totalEarned >= 1e36) intensity = 48; // Undecillion
-    else if (state.totalEarned >= 1e33) intensity = 48; // Decillion
-    else if (state.totalEarned >= 1e30) intensity = 46; // Nonillion
-    else if (state.totalEarned >= 1e27) intensity = 46; // Octillion
-    else if (state.totalEarned >= 1e24) intensity = 46; // Septillion
-    else if (state.totalEarned >= 1e21) intensity = 44; // Sextillion
-    else if (state.totalEarned >= 1e18) intensity = 42; // Quintillion
-    else if (state.totalEarned >= 1e15) intensity = 40; // Quadrillion
-    else if (state.totalEarned >= 1e12) intensity = 38; // Trillion
-    else if (state.totalEarned >= 1e9) intensity = 36;  // Billion
-    else if (state.totalEarned >= 1e6) intensity = 30;  // Million
-    else if (state.totalEarned >= 1e3) intensity = 5;   // Thousand (just a few)
-    
+    if (state.candyOrbs >= 1e63) intensity = 50;      // Vigintillion
+    else if (state.candyOrbs >= 1e60) intensity = 50; // Novemdecillion
+    else if (state.candyOrbs >= 1e57) intensity = 50; // Octodecillion
+    else if (state.candyOrbs >= 1e54) intensity = 50; // Septendecillion
+    else if (state.candyOrbs >= 1e51) intensity = 50; // Sexdecillion
+    else if (state.candyOrbs >= 1e48) intensity = 50; // Quindecillion
+    else if (state.candyOrbs >= 1e45) intensity = 50; // Quattuordecillion
+    else if (state.candyOrbs >= 1e42) intensity = 48; // Tredecillion
+    else if (state.candyOrbs >= 1e39) intensity = 48; // Duodecillion
+    else if (state.candyOrbs >= 1e36) intensity = 48; // Undecillion
+    else if (state.candyOrbs >= 1e33) intensity = 48; // Decillion
+    else if (state.candyOrbs >= 1e30) intensity = 46; // Nonillion
+    else if (state.candyOrbs >= 1e27) intensity = 46; // Octillion
+    else if (state.candyOrbs >= 1e24) intensity = 46; // Septillion
+    else if (state.candyOrbs >= 1e21) intensity = 44; // Sextillion
+    else if (state.candyOrbs >= 1e18) intensity = 42; // Quintillion
+    else if (state.candyOrbs >= 1e15) intensity = 40; // Quadrillion
+    else if (state.candyOrbs >= 1e12) intensity = 38; // Trillion
+    else if (state.candyOrbs >= 1e9) intensity = 36;  // Billion
+    else if (state.candyOrbs >= 1e6) intensity = 30;  // Million
+    else if (state.candyOrbs >= 1e3) intensity = 5;   // Thousand (just a few)
+
     if (intensity === 0) return;
-    
+
     // Only spawn one candy per frame to avoid overwhelming the DOM
     const rightX = window.innerWidth * 0.6; // Start at right side (60% mark)
     const x = rightX + Math.random() * (window.innerWidth * 0.4 - 80); // Spread across right 40% minus candy width
@@ -825,7 +923,7 @@
     const colorIdx = Math.floor(Math.random() * candyColors.length);
     const colors = candyColors[colorIdx];
     const size = 48 + Math.random() * 32; // Larger: 48-80px
-    
+
     const drop = document.createElement("div");
     drop.className = "raindrop";
     drop.style.left = x + "px";
@@ -833,50 +931,50 @@
     drop.style.width = size + "px";
     drop.style.height = size + "px";
     drop.style.animation = `fall ${duration}s linear`;
-    
+
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 100 100");
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    
+
     const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
     const grad = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
     const gradId = `candy-grad-${Date.now()}-${Math.random()}`;
     grad.setAttribute("id", gradId);
     grad.setAttribute("cx", "35%");
     grad.setAttribute("cy", "35%");
-    
+
     const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
     stop1.setAttribute("offset", "0%");
     stop1.setAttribute("style", `stop-color:${colors.grad1};stop-opacity:1`);
-    
+
     const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
     stop2.setAttribute("offset", "70%");
     stop2.setAttribute("style", `stop-color:${colors.grad2};stop-opacity:1`);
-    
+
     const stop3 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
     stop3.setAttribute("offset", "100%");
     stop3.setAttribute("style", `stop-color:${colors.grad3};stop-opacity:1`);
-    
+
     grad.appendChild(stop1);
     grad.appendChild(stop2);
     grad.appendChild(stop3);
     defs.appendChild(grad);
     svg.appendChild(defs);
-    
+
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", "50");
     circle.setAttribute("cy", "50");
     circle.setAttribute("r", "45");
     circle.setAttribute("fill", `url(#${gradId})`);
     svg.appendChild(circle);
-    
+
     const highlight = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     highlight.setAttribute("cx", "35");
     highlight.setAttribute("cy", "35");
     highlight.setAttribute("r", "15");
     highlight.setAttribute("fill", "rgba(255,255,255,0.3)");
     svg.appendChild(highlight);
-    
+
     drop.appendChild(svg);
     rainContainer.appendChild(drop);
     setTimeout(() => drop.remove(), duration * 1000);
@@ -966,7 +1064,7 @@
     playClickSound();
     if (multiplier > 1) {
       playCritSound(); shake();
-      spawnParticle(`×${multiplier}`, x, y, "#fbbf24");
+      spawnParticle(`×${multiplier}`, x, y, "#f1c04d");
       if (critText) msg(critText);
     } else {
       spawnParticle("◆", x, y);
@@ -974,10 +1072,13 @@
 
     checkAchievements();
     updateHUD();
+    // Re-render so disabled/enabled states update when your total changes.
+    renderShop();
+    renderUpgrades();
   }
 
   // ── BUY FUNCTIONS ─────────────────────────────────────────────────────
-  function buyBuilding(id) {
+  function buyBuilding(id, ev) {
     const b = getBuilding(id);
     if (!b) return;
 
@@ -986,7 +1087,11 @@
       return;
     }
 
-    const price = getBuildingPrice(b) * buyMultiplier;
+    const mode = getModeForEvent(ev);
+    const amount = getResolvedBuyCount(b, mode);
+    if (amount <= 0) { msg("Can't buy any right now", false); return; }
+
+    const price = getBuildingTotalCost(b, amount);
     if (state.candyOrbs < price) {
       msg(`Need ${formatNumber(price - state.candyOrbs)} more`, false);
       return;
@@ -994,21 +1099,25 @@
 
     state.candyOrbs -= price;
     state.totalSpent += price;
-    b.count += buyMultiplier;
+    b.count += amount;
     playBuySound();
-    msg(`${b.name} ×${buyMultiplier} (${b.count} total)`);
+    msg(`${b.name} ×${amount} (${b.count} total)`);
     updateAll();
   }
 
-  function sellBuilding(id) {
+  function sellBuilding(id, ev) {
     const b = getBuilding(id);
     if (!b || b.count === 0) return;
-    const refund = Math.floor(getBuildingPrice(b) * 0.5 * buyMultiplier);
-    const sell = Math.min(b.count, buyMultiplier);
+
+    const mode = getModeForEvent(ev);
+    const amount = Math.min(b.count, getResolvedSellCount(b, mode));
+    if (amount <= 0) return;
+
+    const refund = getBuildingSellRefund(b, amount);
     state.candyOrbs += refund;
-    b.count -= sell;
+    b.count -= amount;
     playBuySound();
-    msg(`Sold ×${sell} for ${formatNumber(refund)}`);
+    msg(`Sold ×${amount} for ${formatNumber(refund)}`);
     updateAll();
   }
 
@@ -1088,35 +1197,53 @@
   // ── RENDER FUNCTIONS ──────────────────────────────────────────────────
   function renderShop() {
     const scrollTop = els.shop.scrollTop;
-    let html = "";
+
+    const mode = buyMode;
+    const isActive = (m) => (mode === m);
+    const modeLabel = (m) => (m === "max" ? "Max" : `${m}×`);
+
+    let html = `
+      <div class="card">
+        <div class="section-title">Buy / Sell Amount</div>
+        <div class="qty-toggle">
+          <button class="main-btn ${isActive(1) ? "active" : ""}" type="button" onclick="setBuyMode(1)">${modeLabel(1)}</button>
+          <button class="main-btn ${isActive(10) ? "active" : ""}" type="button" onclick="setBuyMode(10)">${modeLabel(10)}</button>
+          <button class="main-btn ${isActive(100) ? "active" : ""}" type="button" onclick="setBuyMode(100)">${modeLabel(100)}</button>
+          <button class="main-btn ${isActive("max") ? "active" : ""}" type="button" onclick="setBuyMode('max')">${modeLabel("max")}</button>
+        </div>
+        <div class="qty-hint">Default is 1×. Hold Ctrl = 10×, Alt = 100×, Shift = Max (Fn if supported).</div>
+      </div>
+    `;
+
     for (const b of state.buildings) {
-      const price = getBuildingPrice(b);
       const isLocked = isBuildingLocked(b);
-      const isAffordable = state.candyOrbs >= price * buyMultiplier;
+      const buyCount = getResolvedBuyCount(b, buyMode);
+      const sellCount = getResolvedSellCount(b, buyMode);
+
+      const buyTotal = isLocked ? 0 : getBuildingTotalCost(b, buyCount);
+      const canBuy = !isLocked && buyCount > 0 && state.candyOrbs >= buyTotal;
+
+      const refund = b.count > 0 ? getBuildingSellRefund(b, Math.min(b.count, sellCount)) : 0;
+      const canSell = b.count > 0;
+
       const totalFromThis = b.count * b.baseCps * b.bonusMult * state.buildingMult * state.achievementBonus * getPrestigeMultiplier();
       const cps = getCPS();
       const pct = cps > 0 ? (totalFromThis / cps * 100) : 0;
       const lockInfo = isLocked ? ` (Unlock at ${formatNumber(b.unlockAt)})` : "";
-      const affordClass = isAffordable ? "" : "cant-afford";
 
       html += `
         <div class="building-card${isLocked ? " locked" : ""}">
           <div class="building-header">
-            <span class="building-name">${isLocked ? "🔒 " : ""}${b.name}</span>
+            <span class="building-name">${b.name}</span>
             <span class="building-count">${b.count}</span>
           </div>
           <div class="building-stats">${b.desc} · ${formatNumber(b.baseCps, 2)}/sec</div>
-          <div class="buy-multipliers">
-            <button class="main-btn" style="font-size:0.85em;padding:8px;" onclick="setBuyMultiplier(1)">1×</button>
-            <button class="main-btn" style="font-size:0.85em;padding:8px;" onclick="setBuyMultiplier(10)">10×</button>
-            <button class="main-btn" style="font-size:0.85em;padding:8px;" onclick="setBuyMultiplier(100)">100×</button>
-          </div>
           <div style="display:flex;gap:6px;">
-            <button class="main-btn ${affordClass}" style="flex:1;" type="button" data-buy-building="${b.id}"${isLocked ? " disabled" : ""}>
-              Buy · <span class="pill">${formatNumber(price * buyMultiplier)}</span>
+            <button class="main-btn ${canBuy ? "" : "cant-afford"}" style="flex:1;" type="button" data-buy-building="${b.id}"${canBuy ? "" : " disabled"}>
+              Buy · <span class="pill">${formatNumber(buyTotal)}</span>
             </button>
-            <button class="main-btn" style="flex:1;" type="button" data-sell-building="${b.id}"${b.count === 0 ? " disabled" : ""}>
-              Sell · <span class="pill">${formatNumber(Math.floor(price * 0.5 * buyMultiplier))}</span>
+            <button class="main-btn" style="flex:1;" type="button" data-sell-building="${b.id}"${canSell ? "" : " disabled"}>
+              Sell · <span class="pill">${formatNumber(refund)}</span>
             </button>
           </div>
           <small style="color:var(--muted);margin-top:6px;">Own: ${b.count} · Output: ${formatNumber(totalFromThis, 2)} (${pct.toFixed(1)}%)${lockInfo}</small>
@@ -1131,7 +1258,7 @@
     const scrollTop = els.upgrades.scrollTop;
     const bought = state.upgrades.filter(u=>state.clickUpgradesBought.has(u.id));
     const available = state.upgrades.filter(u=>!state.clickUpgradesBought.has(u.id));
-    
+
     let html = `
       <div class="upgrades-tabs">
         <button class="main-btn" style="padding:8px;" onclick="switchUpgradeTab('available')" id="tab-available">Available (${available.length})</button>
@@ -1139,21 +1266,22 @@
       </div>
       <div id="upgrades-available">
     `;
-    
+
     for (const upg of available) {
       const locked = !upg.requires.every(isRequirementMet);
       const affordable = state.candyOrbs >= upg.cost;
-      const statusClass = affordable && !locked ? "unlocked" : locked ? "locked" : "";
+      const enabled = !locked && affordable;
+      const statusClass = enabled ? "unlocked" : locked ? "locked" : "";
       const statusText = locked ? `Locked · Needs: ${requirementsText(upg.requires)}` : affordable ? "Affordable" : `Need ${formatNumber(upg.cost - state.candyOrbs)}`;
       html += `
-        <button class="main-btn ${statusClass}" type="button" data-buy-upgrade="${upg.id}">
-          ${upg.name} <span class="pill${locked ? " locked" : ""}">${formatNumber(upg.cost)}</span>
+        <button class="main-btn ${statusClass}" type="button" data-buy-upgrade="${upg.id}"${enabled ? "" : " disabled"}>
+          ${upg.name} <span class="pill${enabled ? "" : " locked"}">${formatNumber(upg.cost)}</span>
           <small>${upg.desc}</small>
           <div class="upg-status ${locked ? "locked" : affordable ? "available" : ""}">${statusText}</div>
         </button>`;
     }
     html += `</div><div id="upgrades-bought" style="display:none;">`;
-    
+
     for (const upg of bought) {
       html += `
         <button class="main-btn" style="opacity:0.6;" disabled>
@@ -1161,7 +1289,7 @@
           <small>${upg.desc}</small>
         </button>`;
     }
-    
+
     html += `</div>`;
     els.upgrades.innerHTML = html;
     els.upgrades.scrollTop = scrollTop;
@@ -1230,13 +1358,14 @@
     for (const upg of state.prestigeUpgrades) {
       const bought = state.prestigeUpgradesBought.has(upg.id);
       const affordable = state.prestigePoints >= upg.cost;
+      const enabled = !bought && affordable;
       const status = bought ? "Purchased" : affordable ? "Affordable" : `Need ${upg.cost - state.prestigePoints}`;
-      const statusClass = bought ? "" : affordable ? "unlocked" : "";
+      const statusClass = enabled ? "unlocked" : "";
       html += `
-        <button class="main-btn ${statusClass}" type="button" data-buy-prestige="${upg.id}"${bought ? " disabled" : ""}>
-          ${upg.name} <span class="pill${!affordable ? " locked" : ""}">${formatNumber(upg.cost)}</span>
+        <button class="main-btn ${statusClass}" type="button" data-buy-prestige="${upg.id}"${enabled ? "" : " disabled"}>
+          ${upg.name} <span class="pill${enabled ? "" : " locked"}">${formatNumber(upg.cost)}</span>
           <small>${upg.desc}</small>
-          <div class="upg-status ${!affordable ? "locked" : affordable && !bought ? "available" : ""}">${status}</div>
+          <div class="upg-status ${!affordable ? "locked" : enabled ? "available" : ""}">${status}</div>
         </button>`;
     }
     html += `</div></div>`;
@@ -1312,10 +1441,10 @@
 
   function attachBuildingHandlers() {
     for (const btn of els.shop.querySelectorAll("[data-buy-building]")) {
-      btn.addEventListener("click", ()=>buyBuilding(btn.dataset.buyBuilding));
+      btn.addEventListener("click", (ev)=>buyBuilding(btn.dataset.buyBuilding, ev));
     }
     for (const btn of els.shop.querySelectorAll("[data-sell-building]")) {
-      btn.addEventListener("click", ()=>sellBuilding(btn.dataset.sellBuilding));
+      btn.addEventListener("click", (ev)=>sellBuilding(btn.dataset.sellBuilding, ev));
     }
   }
 
@@ -1437,7 +1566,7 @@
   }
 
   // ── GLOBAL FUNCTIONS ─────────────────────────────────────────────────
-  window.setBuyMultiplier = function(n) { buyMultiplier = n; renderShop(); };
+  window.setBuyMode = setBuyMode;
   window.switchUpgradeTab = switchUpgradeTab;
 
   // ── INIT & EVENT LISTENERS ─────────────────────────────────────────────
@@ -1446,7 +1575,7 @@
   const orbFallback = document.getElementById("orbFallback");
   orbImg.addEventListener("click", clickOrb);
   orbFallback.addEventListener("click", clickOrb);
-  
+
   // Show fallback if image fails to load
   orbImg.addEventListener("error", () => {
     orbImg.style.display = "none";
@@ -1470,6 +1599,9 @@
     state.candyOrbs += cps / 10;
     state.totalEarned += cps / 10;
     updateHUD();
+    const activePanelId = document.querySelector(".panel.active")?.id;
+    if (activePanelId === "shop") renderShop();
+    else if (activePanelId === "upgrades") renderUpgrades();
     checkAchievements();
     spawnWaterfall();
   }, 100);
