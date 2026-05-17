@@ -395,12 +395,14 @@
     position: fixed;
     pointer-events: none;
     animation: fall linear forwards;
+    filter: drop-shadow(0 0 12px rgba(255,255,255,0.5)) drop-shadow(0 4px 8px rgba(0,0,0,0.4));
   }
 
   .raindrop svg {
     display: block;
     width: 100%;
-    height: 100%;;
+    height: 100%;
+    filter: brightness(1.15) contrast(1.25);
   }
 
   @keyframes fall {
@@ -613,6 +615,18 @@
     building({ id:"paracosm",          name:"Paracosm",             baseCost:1.66e18,       cps:100000000000000, desc:"Pocket dimension",               tier:16, unlockAt:5000000000000000 }),
     building({ id:"omegaPoint",        name:"Omega Point",          baseCost:2.73e19,       cps:1000000000000000, desc:"End of time",                    tier:17, unlockAt:50000000000000000 }),
     building({ id:"platonia",          name:"Platonia",             baseCost:4.46e20,       cps:10000000000000000, desc:"Pure mathematics",               tier:18, unlockAt:500000000000000000 }),
+    building({ id:"nexus",             name:"Nexus",                baseCost:7.3e21,        cps:100000000000000000, desc:"Center of all",                 tier:19, unlockAt:5e18 }),
+    building({ id:"absolute",          name:"Absolute",             baseCost:1.2e23,        cps:1000000000000000000, desc:"Void itself",                   tier:20, unlockAt:5e19 }),
+    building({ id:"primordial",        name:"Primordial",           baseCost:2e24,          cps:1e21, desc:"First existence",                 tier:21, unlockAt:5e20 }),
+    building({ id:"eternity",          name:"Eternity",             baseCost:3.3e25,        cps:1e22, desc:"Infinite time",                  tier:22, unlockAt:5e21 }),
+    building({ id:"infinity",          name:"Infinity",             baseCost:5.4e26,        cps:1e23, desc:"Boundless",                       tier:23, unlockAt:5e22 }),
+    building({ id:"transcendence",     name:"Transcendence",        baseCost:8.8e27,        cps:1e24, desc:"Beyond all",                     tier:24, unlockAt:5e23 }),
+    building({ id:"omniscience",       name:"Omniscience",          baseCost:1.44e29,       cps:1e25, desc:"All knowledge",                  tier:25, unlockAt:5e24 }),
+    building({ id:"omnipotence",       name:"Omnipotence",          baseCost:2.35e30,       cps:1e26, desc:"All power",                      tier:26, unlockAt:5e25 }),
+    building({ id:"divinity",          name:"Divinity",             baseCost:3.84e31,       cps:1e27, desc:"God-like force",                tier:27, unlockAt:5e26 }),
+    building({ id:"apotheosis",        name:"Apotheosis",           baseCost:6.27e32,       cps:1e28, desc:"Ultimate form",                 tier:28, unlockAt:5e27 }),
+    building({ id:"hyperdimension",    name:"Hyperdimension",       baseCost:1.02e34,       cps:1e29, desc:"Beyond dimensions",              tier:29, unlockAt:5e28 }),
+    building({ id:"metaverse",         name:"Metaverse",            baseCost:1.67e35,       cps:1e30, desc:"All universes",                 tier:30, unlockAt:5e29 }),
   ];
 
   // ── REGULAR UPGRADES ──────────────────────────────────────────────────
@@ -625,25 +639,24 @@
     { id:"u_click6", name:"Hyper Click",          cost:200000,     type:"click",    desc:"Click power x2",                      effect:()=>{ state.clickPower*=2; },             requires:[] },
     { id:"u_click7", name:"Phantom Strike",       cost:2000000,    type:"click",    desc:"Click power x2",                      effect:()=>{ state.clickPower*=2; },             requires:[] },
     { id:"u_click8", name:"Reality Punch",        cost:50000000,   type:"click",    desc:"Click power x3",                      effect:()=>{ state.clickPower*=3; },             requires:[] },
+    { id:"u_click9", name:"Cosmic Tap",           cost:800000000,  type:"click",    desc:"Click power x2",                      effect:()=>{ state.clickPower*=2; },             requires:[] },
+    { id:"u_click10", name:"Infinity Snap",       cost:15000000000, type:"click",    desc:"Click power x2",                      effect:()=>{ state.clickPower*=2; },             requires:[] },
+    { id:"u_click11", name:"Omnipotent Touch",    cost:3.5e14,     type:"click",    desc:"Click power x3",                      effect:()=>{ state.clickPower*=3; },             requires:[] },
 
-    { id:"u_crit1",  name:"Lucky Strike",         cost:400,        type:"crit",     desc:"+5% crit chance",                     effect:()=>{ state.critChance+=0.05; },          requires:[] },
-    { id:"u_crit2",  name:"Critical Mind",        cost:2500,       type:"crit",     desc:"+10% crit chance",                    effect:()=>{ state.critChance+=0.10; },          requires:[] },
-    { id:"u_crit3",  name:"Crit Mastery",         cost:18000,      type:"crit",     desc:"+15% crit chance",                    effect:()=>{ state.critChance+=0.15; },          requires:[] },
-    { id:"u_crit4",  name:"Fate Manipulation",    cost:120000,     type:"crit",     desc:"+20% crit chance",                    effect:()=>{ state.critChance+=0.20; },          requires:[] },
-    { id:"u_crit5",  name:"Fortune's Blade",      cost:900000,     type:"crit",     desc:"+25% crit chance",                    effect:()=>{ state.critChance+=0.25; },          requires:[] },
     { id:"u_crit6",  name:"Chaos Theory",         cost:12000000,   type:"crit",     desc:"+30% crit chance, x1.5 multiplier",   effect:()=>{ state.critChance+=0.30; state.critMult*=1.5; },  requires:[] },
+    { id:"u_crit7",  name:"Paradox Engine",       cost:200000000,  type:"crit",     desc:"+35% crit chance",                    effect:()=>{ state.critChance+=0.35; },          requires:[] },
+    { id:"u_crit8",  name:"Singularity Strike",   cost:4000000000, type:"crit",     desc:"+40% crit chance",                    effect:()=>{ state.critChance+=0.40; },          requires:[] },
+    { id:"u_crit9",  name:"Quantum Entanglement", cost:8.5e13,     type:"crit",     desc:"+45% crit chance, x2 multiplier",     effect:()=>{ state.critChance+=0.45; state.critMult*=2; },  requires:[] },
 
-    { id:"u_build1", name:"Factory Efficiency",   cost:1000,       type:"building", desc:"All buildings +15%",                  effect:()=>{ state.buildingMult*=1.15; },        requires:[] },
-    { id:"u_build2", name:"Automation Upgrade",   cost:6500,       type:"building", desc:"All buildings +25%",                  effect:()=>{ state.buildingMult*=1.25; },        requires:[] },
-    { id:"u_build3", name:"Synergy",              cost:45000,      type:"building", desc:"All buildings +35%",                  effect:()=>{ state.buildingMult*=1.35; },        requires:[] },
-    { id:"u_build4", name:"Optimization",         cost:380000,     type:"building", desc:"All buildings +50%",                  effect:()=>{ state.buildingMult*=1.50; },        requires:[] },
-    { id:"u_build5", name:"Production Overdrive", cost:5000000,    type:"building", desc:"All buildings +75%",                  effect:()=>{ state.buildingMult*=1.75; },        requires:[] },
-    { id:"u_build6", name:"Quantum Leap",         cost:80000000,   type:"building", desc:"All buildings x2",                    effect:()=>{ state.buildingMult*=2; },           requires:[] },
+    { id:"u_build6",  name:"Quantum Leap",        cost:80000000,   type:"building", desc:"All buildings x2",                    effect:()=>{ state.buildingMult*=2; },           requires:[] },
+    { id:"u_build7",  name:"Dimensional Mastery", cost:2000000000, type:"building", desc:"All buildings x3",                    effect:()=>{ state.buildingMult*=3; },           requires:[] },
+    { id:"u_build8",  name:"Cosmic Convergence",  cost:5e13,       type:"building", desc:"All buildings x5",                    effect:()=>{ state.buildingMult*=5; },           requires:[] },
+    { id:"u_build9",  name:"Reality Engine",      cost:1.2e15,     type:"building", desc:"All buildings x7",                    effect:()=>{ state.buildingMult*=7; },           requires:[] },
 
-    { id:"u_cost1",  name:"Bulk Discount",        cost:2000,       type:"cost",     desc:"Buildings cost -10%",                 effect:()=>{ state.costMult*=0.90; },            requires:[] },
-    { id:"u_cost2",  name:"Wholesale",            cost:15000,      type:"cost",     desc:"Buildings cost -15%",                 effect:()=>{ state.costMult*=0.85; },            requires:[] },
-    { id:"u_cost3",  name:"Monopoly",             cost:120000,     type:"cost",     desc:"Buildings cost -20%",                 effect:()=>{ state.costMult*=0.80; },            requires:[] },
-    { id:"u_cost4",  name:"Market Domination",    cost:2000000,    type:"cost",     desc:"Buildings cost -25%",                 effect:()=>{ state.costMult*=0.75; },            requires:[] },
+    { id:"u_cost5",  name:"Absolute Economy",     cost:50000000,   type:"cost",     desc:"Buildings cost -30%",                 effect:()=>{ state.costMult*=0.70; },            requires:[] },
+    { id:"u_cost6",  name:"Financial Collapse",   cost:1000000000, type:"cost",     desc:"Buildings cost -35%",                 effect:()=>{ state.costMult*=0.65; },            requires:[] },
+    { id:"u_cost7",  name:"Infinite Wealth",      cost:2.5e13,     type:"cost",     desc:"Buildings cost -40%",                 effect:()=>{ state.costMult*=0.60; },            requires:[] },
+    { id:"u_cost8",  name:"Economic Singularity", cost:6e15,       type:"cost",     desc:"Buildings cost -45%",                 effect:()=>{ state.costMult*=0.55; },            requires:[] },
   ];
 
   // ── PRESTIGE UPGRADES ────────────────────────────────────────────────────────
@@ -659,6 +672,11 @@
     { id:"p8",  name:"Fate Weaver",         cost:7,   desc:"+20% crit chance permanently",            effect:()=>{ state.critChance+=0.20; },                                       requires:[] },
     { id:"p9",  name:"Prestige Rush",       cost:6,   desc:"Prestige gain +100% permanently",         effect:()=>{ state.prestigeGainMult*=2.0; },                                 requires:[] },
     { id:"p10", name:"Candy Hoard",         cost:8,   desc:"Buildings cost -20% permanently",         effect:()=>{ state.costMult*=0.80; },                                       requires:[] },
+    { id:"p11", name:"Transcendence",       cost:10,  desc:"Click power +100% permanently",           effect:()=>{ state.clickMult*=2; },                                        requires:[] },
+    { id:"p12", name:"Infinite Potential",  cost:12,  desc:"All buildings x2 permanently",            effect:()=>{ state.buildingMult*=2; },                                     requires:[] },
+    { id:"p13", name:"Critical Destiny",    cost:11,  desc:"+50% crit chance permanently",            effect:()=>{ state.critChance+=0.50; },                                     requires:[] },
+    { id:"p14", name:"Prestige Apotheosis", cost:15,  desc:"Prestige gain +300% permanently",         effect:()=>{ state.prestigeGainMult*=4; },                                requires:[] },
+    { id:"p15", name:"Eternal Essence",     cost:20,  desc:"All permanent bonuses x1.5",              effect:()=>{ state.clickMult*=1.5; state.buildingMult*=1.5; state.costMult*=0.9; },  requires:[] },
   ];
 
   // ── ACHIEVEMENTS ──────────────────────────────────────────────────────
@@ -789,12 +807,13 @@
     if (intensity === 0) return;
     
     // Only spawn one candy per frame to avoid overwhelming the DOM
-    const x = Math.random() * rainContainer.offsetWidth + rainContainer.offsetLeft - window.innerWidth * 0.6;
-    const y = -60;
-    const duration = 2 + Math.random() * 2.5;
+    const rightX = window.innerWidth * 0.6; // Start at right side (60% mark)
+    const x = rightX + Math.random() * (window.innerWidth * 0.4 - 80); // Spread across right 40% minus candy width
+    const y = -80;
+    const duration = 2.5 + Math.random() * 3;
     const colorIdx = Math.floor(Math.random() * candyColors.length);
     const colors = candyColors[colorIdx];
-    const size = 32 + Math.random() * 20;
+    const size = 48 + Math.random() * 32; // Larger: 48-80px
     
     const drop = document.createElement("div");
     drop.className = "raindrop";
