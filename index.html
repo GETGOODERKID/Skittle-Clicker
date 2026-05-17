@@ -821,7 +821,8 @@
     // Avoid display/float mismatch (e.g. 99,999.9 showing as 100,000).
     const earned = Math.floor(state.totalEarned + 1e-9);
     if (earned < requiredEarned) return 0;
-    const newPoints = Math.max(0, Math.floor((Math.sqrt(earned / requiredEarned) / 10) * state.prestigeGainMult));
+    // Scale points so higher totals give meaningfully more than +1.
+    const newPoints = Math.max(0, Math.floor(Math.sqrt(earned / requiredEarned) * state.prestigeGainMult));
     return newPoints - (state.prestigePoints - state.lastPrestigeEarned);
   }
 
@@ -1284,7 +1285,7 @@
           <button class="main-btn ${isActive(100) ? "active" : ""}" type="button" onclick="setBuyMode(100)">${modeLabel(100)}</button>
           <button class="main-btn ${isActive("max") ? "active" : ""}" type="button" onclick="setBuyMode('max')">${modeLabel("max")}</button>
         </div>
-        <div class="qty-hint">Default is 1×. Press 1 = 10×, 2 = 100×, 3 = Max 4.</div>
+        <div class="qty-hint">Default is 1×. Press 1/2/3/4 to set 1×/10×/100×/Max.</div>
       </div>
     `;
 
