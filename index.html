@@ -425,20 +425,7 @@
 
   <div id="right">
     <h1>🍬 Skittle Clicker</h1>
-<img id="skittleImg" class="skittle" src="ChatGPT Image May 16, 2026, 08_18_49 PM.png" alt="Skittle">
-      <ellipse cx="50" cy="108" rx="30" ry="8" fill="rgba(0,0,0,0.25)"/>
-      <ellipse cx="50" cy="56" rx="34" ry="52" fill="#e8357a"/>
-      <ellipse cx="50" cy="56" rx="34" ry="52" fill="url(#sg)"/>
-      <ellipse cx="38" cy="38" rx="10" ry="14" fill="rgba(255,255,255,0.22)" transform="rotate(-18,38,38)"/>
-      <ellipse cx="50" cy="72" rx="22" ry="12" fill="rgba(0,0,0,0.12)"/>
-      <text x="50" y="62" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="white" opacity="0.92">S</text>
-      <defs>
-        <radialGradient id="sg" cx="38%" cy="32%" r="62%">
-          <stop offset="0%" stop-color="#ff80c0" stop-opacity="0.5"/>
-          <stop offset="100%" stop-color="#7a0030" stop-opacity="0.3"/>
-        </radialGradient>
-      </defs>
-    </svg>
+    <img id="skittleImg" class="skittle" src="ChatGPT Image May 16, 2026, 08_18_49 PM.png" alt="Skittle">
 
     <div class="stats">
       <div class="stat-row">
@@ -565,156 +552,151 @@
 
   // ── REGULAR UPGRADES ──────────────────────────────────────────────────
   state.upgrades = [
-    // ── Click upgrades ──────────────────────────
-    { id:"u_click1", name:"Sharper Tap",          emoji:"👆",   cost:25,         type:"click",    desc:"+0.5 click power",                    effect:()=>{ state.clickPower+=0.5; },                     requires:[] },
-    { id:"u_click2", name:"Double Tap",           emoji:"👆👆", cost:150,        type:"click",    desc:"+1.5 click power",                    effect:()=>{ state.clickPower+=1.5; },                     requires:[{type:"upgrade",id:"u_click1"}] },
-    { id:"u_click3", name:"Finger Boost",         emoji:"⚡",   cost:800,        type:"click",    desc:"+4 click power",                      effect:()=>{ state.clickPower+=4; },                       requires:[{type:"upgrade",id:"u_click2"}] },
-    { id:"u_click4", name:"Rapid Fire",           emoji:"🔥",   cost:4500,       type:"click",    desc:"+12 click power",                     effect:()=>{ state.clickPower+=12; },                      requires:[{type:"upgrade",id:"u_click3"}] },
-    { id:"u_click5", name:"Supersonic Tap",       emoji:"⚙️",   cost:28000,      type:"click",    desc:"+35 click power",                     effect:()=>{ state.clickPower+=35; },                      requires:[{type:"upgrade",id:"u_click4"},{type:"building",id:"candyWizard",count:1}] },
-    { id:"u_click6", name:"Hyper Click",          emoji:"💥",   cost:200000,     type:"click",    desc:"+100 click power",                    effect:()=>{ state.clickPower+=100; },                     requires:[{type:"upgrade",id:"u_click5"},{type:"building",id:"skittleCore",count:1}] },
-    { id:"u_click7", name:"Phantom Strike",       emoji:"👻",   cost:2000000,    type:"click",    desc:"Click power x2",                      effect:()=>{ state.clickPower*=2; },                       requires:[{type:"upgrade",id:"u_click6"},{type:"building",id:"dimensionRift",count:1}] },
-    { id:"u_click8", name:"Reality Punch",        emoji:"🌌",   cost:50000000,   type:"click",    desc:"Click power x3",                      effect:()=>{ state.clickPower*=3; },                       requires:[{type:"upgrade",id:"u_click7"},{type:"building",id:"infinityMachine",count:1}] },
-    { id:"u_click9", name:"God Tap",              emoji:"👑",   cost:5000000000, type:"click",    desc:"Click power x5",                      effect:()=>{ state.clickPower*=5; },                       requires:[{type:"upgrade",id:"u_click8"},{type:"building",id:"skittleGod",count:1}] },
+    { id:"u_click1", name:"Sharper Tap",          emoji:"👆",   cost:25,         type:"click",    desc:"+0.5 click power",                    effect:()=>{ state.clickPower+=0.5; },                  requires:[] },
+    { id:"u_click2", name:"Double Tap",           emoji:"👆👆", cost:150,        type:"click",    desc:"+1.5 click power",                    effect:()=>{ state.clickPower+=1.5; },                requires:[] },
+    { id:"u_click3", name:"Finger Boost",         emoji:"⚡",   cost:800,        type:"click",    desc:"+4 click power",                      effect:()=>{ state.clickPower+=4; },                     requires:[] },
+    { id:"u_click4", name:"Rapid Fire",           emoji:"🔥",   cost:4500,       type:"click",    desc:"+12 click power",                     effect:()=>{ state.clickPower+=12; },                   requires:[] },
+    { id:"u_click5", name:"Supersonic Tap",       emoji:"⚙️",   cost:28000,      type:"click",    desc:"+35 click power",                     effect:()=>{ state.clickPower+=35; },                 requires:[] },
+    { id:"u_click6", name:"Hyper Click",          emoji:"💥",   cost:200000,     type:"click",    desc:"+100 click power",                    effect:()=>{ state.clickPower+=100; },                  requires:[] },
+    { id:"u_click7", name:"Phantom Strike",       emoji:"👻",   cost:2000000,    type:"click",    desc:"Click power x2",                      effect:()=>{ state.clickPower*=2; },                    requires:[] },
+    { id:"u_click8", name:"Reality Punch",        emoji:"🌌",   cost:50000000,   type:"click",    desc:"Click power x3",                      effect:()=>{ state.clickPower*=3; },                    requires:[] },
+    { id:"u_click9", name:"God Tap",              emoji:"👑",   cost:5000000000, type:"click",    desc:"Click power x5",                      effect:()=>{ state.clickPower*=5; },                    requires:[] },
 
-    // ── Crit upgrades ──────────────────────────
-    { id:"u_crit1",  name:"Lucky Strike",         emoji:"🍀",   cost:400,        type:"crit",     desc:"+5% crit chance",                     effect:()=>{ state.critChance+=0.05; },                    requires:[{type:"building",id:"skittleFactory",count:2}] },
-    { id:"u_crit2",  name:"Critical Mind",        emoji:"🧠",   cost:2500,       type:"crit",     desc:"+10% crit chance",                    effect:()=>{ state.critChance+=0.10; },                    requires:[{type:"upgrade",id:"u_crit1"}] },
-    { id:"u_crit3",  name:"Crit Mastery",         emoji:"⚔️",   cost:18000,      type:"crit",     desc:"+15% crit chance",                    effect:()=>{ state.critChance+=0.15; },                    requires:[{type:"upgrade",id:"u_crit2"},{type:"building",id:"glitterMixer",count:1}] },
-    { id:"u_crit4",  name:"Fate Manipulation",    emoji:"✨",   cost:120000,     type:"crit",     desc:"+20% crit chance",                    effect:()=>{ state.critChance+=0.20; },                    requires:[{type:"upgrade",id:"u_crit3"}] },
-    { id:"u_crit5",  name:"Fortune's Blade",      emoji:"🗡️",   cost:900000,     type:"crit",     desc:"+25% crit chance",                    effect:()=>{ state.critChance+=0.25; },                    requires:[{type:"upgrade",id:"u_crit4"},{type:"building",id:"dimensionRift",count:1}] },
-    { id:"u_crit6",  name:"Chaos Theory",         emoji:"🎲",   cost:12000000,   type:"crit",     desc:"+30% crit chance + crits do 50% more",effect:()=>{ state.critChance+=0.30; state.critMult*=1.5; },requires:[{type:"upgrade",id:"u_crit5"}] },
+    { id:"u_crit1",  name:"Lucky Strike",         emoji:"🍀",   cost:400,        type:"crit",     desc:"+5% crit chance",                     effect:()=>{ state.critChance+=0.05; },                 requires:[] },
+    { id:"u_crit2",  name:"Critical Mind",        emoji:"🧠",   cost:2500,       type:"crit",     desc:"+10% crit chance",                    effect:()=>{ state.critChance+=0.10; },                 requires:[] },
+    { id:"u_crit3",  name:"Crit Mastery",         emoji:"⚔️",   cost:18000,      type:"crit",     desc:"+15% crit chance",                    effect:()=>{ state.critChance+=0.15; },               requires:[] },
+    { id:"u_crit4",  name:"Fate Manipulation",    emoji:"✨",   cost:120000,     type:"crit",     desc:"+20% crit chance",                    effect:()=>{ state.critChance+=0.20; },                  requires:[] },
+    { id:"u_crit5",  name:"Fortune's Blade",      emoji:"🗡️",   cost:900000,     type:"crit",     desc:"+25% crit chance",                    effect:()=>{ state.critChance+=0.25; },              requires:[] },
+    { id:"u_crit6",  name:"Chaos Theory",         emoji:"🎲",   cost:12000000,   type:"crit",     desc:"+30% crit chance",                    effect:()=>{ state.critChance+=0.30; state.critMult*=1.5; },  requires:[] },
 
-    // ── Building multipliers ──────────────────────────
-    { id:"u_build1", name:"Factory Efficiency",   emoji:"🔧",   cost:1000,       type:"building", desc:"All buildings +15%",                  effect:()=>{ state.buildingMult*=1.15; },                  requires:[{type:"building",id:"sugarPlant",count:5}] },
-    { id:"u_build2", name:"Automation Upgrade",   emoji:"⚙️",   cost:6500,       type:"building", desc:"All buildings +25%",                  effect:()=>{ state.buildingMult*=1.25; },                  requires:[{type:"upgrade",id:"u_build1"},{type:"building",id:"skittleFactory",count:3}] },
-    { id:"u_build3", name:"Synergy",              emoji:"🔗",   cost:45000,      type:"building", desc:"All buildings +35%",                  effect:()=>{ state.buildingMult*=1.35; },                  requires:[{type:"upgrade",id:"u_build2"},{type:"building",id:"candyWizard",count:2}] },
-    { id:"u_build4", name:"Optimization",         emoji:"📈",   cost:380000,     type:"building", desc:"All buildings +50%",                  effect:()=>{ state.buildingMult*=1.50; },                  requires:[{type:"upgrade",id:"u_build3"},{type:"building",id:"glitterMixer",count:3}] },
-    { id:"u_build5", name:"Production Overdrive", emoji:"🚀",   cost:5000000,    type:"building", desc:"All buildings +75%",                  effect:()=>{ state.buildingMult*=1.75; },                  requires:[{type:"upgrade",id:"u_build4"},{type:"building",id:"skittleCore",count:1}] },
-    { id:"u_build6", name:"Quantum Leap",         emoji:"🌌",   cost:80000000,   type:"building", desc:"All buildings x2",                    effect:()=>{ state.buildingMult*=2; },                     requires:[{type:"upgrade",id:"u_build5"},{type:"building",id:"dimensionRift",count:1}] },
-    { id:"u_build7", name:"Dimensional Mastery",  emoji:"🌀",   cost:2000000000, type:"building", desc:"All buildings x3",                    effect:()=>{ state.buildingMult*=3; },                     requires:[{type:"upgrade",id:"u_build6"},{type:"building",id:"universeEngine",count:1}] },
-    { id:"u_build8", name:"Cosmic Convergence",   emoji:"🪐",   cost:5e13,       type:"building", desc:"All buildings x5",                    effect:()=>{ state.buildingMult*=5; },                     requires:[{type:"upgrade",id:"u_build7"},{type:"building",id:"realityWarp",count:1}] },
-    { id:"u_build9", name:"Infinite Loop",        emoji:"♾️",   cost:9e17,       type:"building", desc:"All buildings x10",                   effect:()=>{ state.buildingMult*=10; },                    requires:[{type:"upgrade",id:"u_build8"},{type:"building",id:"timeWeaver",count:1}] },
+    { id:"u_build1", name:"Factory Efficiency",   emoji:"🔧",   cost:1000,       type:"building", desc:"All buildings +15%",                  effect:()=>{ state.buildingMult*=1.15; },               requires:[] },
+    { id:"u_build2", name:"Automation Upgrade",   emoji:"⚙️",   cost:6500,       type:"building", desc:"All buildings +25%",                  effect:()=>{ state.buildingMult*=1.25; },             requires:[] },
+    { id:"u_build3", name:"Synergy",              emoji:"🔗",   cost:45000,      type:"building", desc:"All buildings +35%",                  effect:()=>{ state.buildingMult*=1.35; },               requires:[] },
+    { id:"u_build4", name:"Optimization",         emoji:"📈",   cost:380000,     type:"building", desc:"All buildings +50%",                  effect:()=>{ state.buildingMult*=1.50; },               requires:[] },
+    { id:"u_build5", name:"Production Overdrive", emoji:"🚀",   cost:5000000,    type:"building", desc:"All buildings +75%",                  effect:()=>{ state.buildingMult*=1.75; },               requires:[] },
+    { id:"u_build6", name:"Quantum Leap",         emoji:"🌌",   cost:80000000,   type:"building", desc:"All buildings x2",                    effect:()=>{ state.buildingMult*=2; },                  requires:[] },
+    { id:"u_build7", name:"Dimensional Mastery",  emoji:"🌀",   cost:2000000000, type:"building", desc:"All buildings x3",                    effect:()=>{ state.buildingMult*=3; },                  requires:[] },
+    { id:"u_build8", name:"Cosmic Convergence",   emoji:"🪐",   cost:5e13,       type:"building", desc:"All buildings x5",                    effect:()=>{ state.buildingMult*=5; },                  requires:[] },
+    { id:"u_build9", name:"Infinite Loop",        emoji:"♾️",   cost:9e17,       type:"building", desc:"All buildings x10",                   effect:()=>{ state.buildingMult*=10; },               requires:[] },
 
-    // ── Cost reduction ──────────────────────────
-    { id:"u_cost1",  name:"Bulk Discount",        emoji:"📦",   cost:2000,       type:"cost",     desc:"Buildings cost -10%",                 effect:()=>{ state.costMult*=0.90; },                      requires:[{type:"building",id:"skittleFactory",count:2}] },
-    { id:"u_cost2",  name:"Wholesale",            emoji:"🏪",   cost:15000,      type:"cost",     desc:"Buildings cost -15%",                 effect:()=>{ state.costMult*=0.85; },                      requires:[{type:"upgrade",id:"u_cost1"}] },
-    { id:"u_cost3",  name:"Monopoly",             emoji:"💰",   cost:120000,     type:"cost",     desc:"Buildings cost -20%",                 effect:()=>{ state.costMult*=0.80; },                      requires:[{type:"upgrade",id:"u_cost2"},{type:"building",id:"candyWizard",count:1}] },
-    { id:"u_cost4",  name:"Market Domination",    emoji:"📊",   cost:2000000,    type:"cost",     desc:"Buildings cost -25%",                 effect:()=>{ state.costMult*=0.75; },                      requires:[{type:"upgrade",id:"u_cost3"},{type:"building",id:"skittleCore",count:5}] },
-    { id:"u_cost5",  name:"Absolute Economy",     emoji:"🏦",   cost:50000000,   type:"cost",     desc:"Buildings cost -30%",                 effect:()=>{ state.costMult*=0.70; },                      requires:[{type:"upgrade",id:"u_cost4"},{type:"building",id:"dimensionRift",count:3}] },
+    { id:"u_cost1",  name:"Bulk Discount",        emoji:"📦",   cost:2000,       type:"cost",     desc:"Buildings cost -10%",                 effect:()=>{ state.costMult*=0.90; },                   requires:[] },
+    { id:"u_cost2",  name:"Wholesale",            emoji:"🏪",   cost:15000,      type:"cost",     desc:"Buildings cost -15%",                 effect:()=>{ state.costMult*=0.85; },                   requires:[] },
+    { id:"u_cost3",  name:"Monopoly",             emoji:"💰",   cost:120000,     type:"cost",     desc:"Buildings cost -20%",                 effect:()=>{ state.costMult*=0.80; },                   requires:[] },
+    { id:"u_cost4",  name:"Market Domination",    emoji:"📊",   cost:2000000,    type:"cost",     desc:"Buildings cost -25%",                 effect:()=>{ state.costMult*=0.75; },                   requires:[] },
+    { id:"u_cost5",  name:"Absolute Economy",     emoji:"🏦",   cost:50000000,   type:"cost",     desc:"Buildings cost -30%",                 effect:()=>{ state.costMult*=0.70; },                   requires:[] },
 
-    // ── Individual building boosts ──────────────────────────
-    { id:"u_sp1",  name:"Fertilizer",             emoji:"🌿",   cost:500,        type:"building", desc:"Sugar Plants produce 2x more",        effect:()=>{ getBuilding("sugarPlant").bonusMult*=2; },    requires:[{type:"building",id:"sugarPlant",count:10}] },
-    { id:"u_sp2",  name:"Super Soil",             emoji:"🌱",   cost:8000,       type:"building", desc:"Sugar Plants produce 4x more",        effect:()=>{ getBuilding("sugarPlant").bonusMult*=4; },    requires:[{type:"upgrade",id:"u_sp1"},{type:"building",id:"sugarPlant",count:25}] },
-    { id:"u_sf1",  name:"Better Conveyor",        emoji:"⚙️",   cost:3000,       type:"building", desc:"Factories produce 2x more",           effect:()=>{ getBuilding("skittleFactory").bonusMult*=2; },requires:[{type:"building",id:"skittleFactory",count:10}] },
-    { id:"u_sf2",  name:"Turbo Machines",         emoji:"🏭",   cost:40000,      type:"building", desc:"Factories produce 4x more",           effect:()=>{ getBuilding("skittleFactory").bonusMult*=4; },requires:[{type:"upgrade",id:"u_sf1"},{type:"building",id:"skittleFactory",count:25}] },
-    { id:"u_cw1",  name:"Arcane Formula",         emoji:"🔮",   cost:25000,      type:"building", desc:"Candy Wizards produce 2x more",       effect:()=>{ getBuilding("candyWizard").bonusMult*=2; },   requires:[{type:"building",id:"candyWizard",count:10}] },
-    { id:"u_cw2",  name:"Grand Spellbook",        emoji:"📖",   cost:400000,     type:"building", desc:"Candy Wizards produce 4x more",       effect:()=>{ getBuilding("candyWizard").bonusMult*=4; },   requires:[{type:"upgrade",id:"u_cw1"},{type:"building",id:"candyWizard",count:25}] },
-    { id:"u_gm1",  name:"Glitter Overdose",       emoji:"💫",   cost:280000,     type:"building", desc:"Glitter Mixers produce 2x more",      effect:()=>{ getBuilding("glitterMixer").bonusMult*=2; },  requires:[{type:"building",id:"glitterMixer",count:10}] },
-    { id:"u_sc1",  name:"Crystal Resonance",      emoji:"💎",   cost:3000000,    type:"building", desc:"Skittle Cores produce 3x more",       effect:()=>{ getBuilding("skittleCore").bonusMult*=3; },   requires:[{type:"building",id:"skittleCore",count:10}] },
-    { id:"u_dr1",  name:"Rift Amplifier",         emoji:"🌀",   cost:40000000,   type:"building", desc:"Dimension Rifts produce 3x more",     effect:()=>{ getBuilding("dimensionRift").bonusMult*=3; }, requires:[{type:"building",id:"dimensionRift",count:10}] },
-    { id:"u_im1",  name:"Loop Stabilizer",        emoji:"♾️",   cost:600000000,  type:"building", desc:"Infinity Machines produce 3x more",   effect:()=>{ getBuilding("infinityMachine").bonusMult*=3; },requires:[{type:"building",id:"infinityMachine",count:10}] },
-    { id:"u_ue1",  name:"Galaxy Core Tap",        emoji:"🌌",   cost:1e10,       type:"building", desc:"Universe Engines produce 4x more",    effect:()=>{ getBuilding("universeEngine").bonusMult*=4; },requires:[{type:"building",id:"universeEngine",count:10}] },
-    { id:"u_of1",  name:"Omni Sync",              emoji:"🏗️",   cost:2e11,       type:"building", desc:"Omni-Factories produce 4x more",      effect:()=>{ getBuilding("omniFactory").bonusMult*=4; },   requires:[{type:"building",id:"omniFactory",count:10}] },
-    { id:"u_sg1",  name:"Divine Channeling",      emoji:"👑",   cost:3e12,       type:"building", desc:"Skittle Gods produce 5x more",        effect:()=>{ getBuilding("skittleGod").bonusMult*=5; },    requires:[{type:"building",id:"skittleGod",count:10}] },
-    { id:"u_rw1",  name:"Warp Core Upgrade",      emoji:"⚡",   cost:5e13,       type:"building", desc:"Reality Warps produce 5x more",       effect:()=>{ getBuilding("realityWarp").bonusMult*=5; },   requires:[{type:"building",id:"realityWarp",count:10}] },
-    { id:"u_tw1",  name:"Temporal Flux",          emoji:"⏰",   cost:8e14,       type:"building", desc:"Time Weavers produce 5x more",        effect:()=>{ getBuilding("timeWeaver").bonusMult*=5; },    requires:[{type:"building",id:"timeWeaver",count:10}] },
-    { id:"u_qh1",  name:"Quantum Entanglement",   emoji:"⚛️",   cost:1.5e16,     type:"building", desc:"Quantum Harvesters produce 6x more",  effect:()=>{ getBuilding("quantumHarvest").bonusMult*=6; },requires:[{type:"building",id:"quantumHarvest",count:10}] },
-    { id:"u_stf1", name:"Stellar Combustion",     emoji:"🌟",   cost:3e17,       type:"building", desc:"Stellar Forges produce 6x more",      effect:()=>{ getBuilding("stellarForge").bonusMult*=6; },  requires:[{type:"building",id:"stellarForge",count:10}] },
-    { id:"u_gmi1", name:"Telepathic Grid",        emoji:"🧠",   cost:5e18,       type:"building", desc:"Galactic Minds produce 7x more",      effect:()=>{ getBuilding("galacticMind").bonusMult*=7; },  requires:[{type:"building",id:"galacticMind",count:10}] },
-    { id:"u_vn1",  name:"Void Consumption",       emoji:"🕳️",   cost:9e19,       type:"building", desc:"Void Nexuses produce 7x more",        effect:()=>{ getBuilding("voidNexus").bonusMult*=7; },     requires:[{type:"building",id:"voidNexus",count:10}] },
-    { id:"u_cd1",  name:"Crystal Lattice",        emoji:"💠",   cost:2e21,       type:"building", desc:"Crystal Dimensions produce 8x more",  effect:()=>{ getBuilding("crystalDim").bonusMult*=8; },    requires:[{type:"building",id:"crystalDim",count:10}] },
-    { id:"u_ib1",  name:"Eternal Bloom",          emoji:"🌸",   cost:4e22,       type:"building", desc:"Infinity Blooms produce 8x more",     effect:()=>{ getBuilding("infinityBloom").bonusMult*=8; }, requires:[{type:"building",id:"infinityBloom",count:10}] },
-    { id:"u_tg1",  name:"Temporal Omniscience",   emoji:"🕰️",   cost:8e24,       type:"building", desc:"Temporal Gods produce 10x more",      effect:()=>{ getBuilding("temporalGod").bonusMult*=10; },  requires:[{type:"building",id:"temporalGod",count:10}] },
-    { id:"u_abs1", name:"Absolute Authority",     emoji:"🌈",   cost:2e28,       type:"building", desc:"The Absolute produces 15x more",      effect:()=>{ getBuilding("theAbsolute").bonusMult*=15; },  requires:[{type:"building",id:"theAbsolute",count:10}] },
+    { id:"u_sp1",  name:"Fertilizer",             emoji:"🌿",   cost:500,        type:"building", desc:"Sugar Plants produce 2x more",        effect:()=>{ getBuilding("sugarPlant").bonusMult*=2; }, requires:[] },
+    { id:"u_sp2",  name:"Super Soil",             emoji:"🌱",   cost:8000,       type:"building", desc:"Sugar Plants produce 4x more",        effect:()=>{ getBuilding("sugarPlant").bonusMult*=4; }, requires:[] },
+    { id:"u_sf1",  name:"Better Conveyor",        emoji:"⚙️",   cost:3000,       type:"building", desc:"Factories produce 2x more",           effect:()=>{ getBuilding("skittleFactory").bonusMult*=2; }, requires:[] },
+    { id:"u_sf2",  name:"Turbo Machines",         emoji:"🏭",   cost:40000,      type:"building", desc:"Factories produce 4x more",           effect:()=>{ getBuilding("skittleFactory").bonusMult*=4; }, requires:[] },
+    { id:"u_cw1",  name:"Arcane Formula",         emoji:"🔮",   cost:25000,      type:"building", desc:"Candy Wizards produce 2x more",       effect:()=>{ getBuilding("candyWizard").bonusMult*=2; }, requires:[] },
+    { id:"u_cw2",  name:"Grand Spellbook",        emoji:"📖",   cost:400000,     type:"building", desc:"Candy Wizards produce 4x more",       effect:()=>{ getBuilding("candyWizard").bonusMult*=4; }, requires:[] },
+    { id:"u_gm1",  name:"Glitter Overdose",       emoji:"💫",   cost:280000,     type:"building", desc:"Glitter Mixers produce 2x more",      effect:()=>{ getBuilding("glitterMixer").bonusMult*=2; }, requires:[] },
+    { id:"u_sc1",  name:"Crystal Resonance",      emoji:"💎",   cost:3000000,    type:"building", desc:"Skittle Cores produce 3x more",       effect:()=>{ getBuilding("skittleCore").bonusMult*=3; }, requires:[] },
+    { id:"u_dr1",  name:"Rift Amplifier",         emoji:"🌀",   cost:40000000,   type:"building", desc:"Dimension Rifts produce 3x more",     effect:()=>{ getBuilding("dimensionRift").bonusMult*=3; }, requires:[] },
+    { id:"u_im1",  name:"Loop Stabilizer",        emoji:"♾️",   cost:600000000,  type:"building", desc:"Infinity Machines produce 3x more",   effect:()=>{ getBuilding("infinityMachine").bonusMult*=3; }, requires:[] },
+    { id:"u_ue1",  name:"Galaxy Core Tap",        emoji:"🌌",   cost:1e10,       type:"building", desc:"Universe Engines produce 4x more",    effect:()=>{ getBuilding("universeEngine").bonusMult*=4; }, requires:[] },
+    { id:"u_of1",  name:"Omni Sync",              emoji:"🏗️",   cost:2e11,       type:"building", desc:"Omni-Factories produce 4x more",      effect:()=>{ getBuilding("omniFactory").bonusMult*=4; }, requires:[] },
+    { id:"u_sg1",  name:"Divine Channeling",      emoji:"👑",   cost:3e12,       type:"building", desc:"Skittle Gods produce 5x more",        effect:()=>{ getBuilding("skittleGod").bonusMult*=5; }, requires:[] },
+    { id:"u_rw1",  name:"Warp Core Upgrade",      emoji:"⚡",   cost:5e13,       type:"building", desc:"Reality Warps produce 5x more",       effect:()=>{ getBuilding("realityWarp").bonusMult*=5; }, requires:[] },
+    { id:"u_tw1",  name:"Temporal Flux",          emoji:"⏰",   cost:8e14,       type:"building", desc:"Time Weavers produce 5x more",        effect:()=>{ getBuilding("timeWeaver").bonusMult*=5; }, requires:[] },
+    { id:"u_qh1",  name:"Quantum Entanglement",   emoji:"⚛️",   cost:1.5e16,     type:"building", desc:"Quantum Harvesters produce 6x more",  effect:()=>{ getBuilding("quantumHarvest").bonusMult*=6; }, requires:[] },
+    { id:"u_stf1", name:"Stellar Combustion",     emoji:"🌟",   cost:3e17,       type:"building", desc:"Stellar Forges produce 6x more",      effect:()=>{ getBuilding("stellarForge").bonusMult*=6; }, requires:[] },
+    { id:"u_gmi1", name:"Telepathic Grid",        emoji:"🧠",   cost:5e18,       type:"building", desc:"Galactic Minds produce 7x more",      effect:()=>{ getBuilding("galacticMind").bonusMult*=7; }, requires:[] },
+    { id:"u_vn1",  name:"Void Consumption",       emoji:"🕳️",   cost:9e19,       type:"building", desc:"Void Nexuses produce 7x more",        effect:()=>{ getBuilding("voidNexus").bonusMult*=7; }, requires:[] },
+    { id:"u_cd1",  name:"Crystal Lattice",        emoji:"💠",   cost:2e21,       type:"building", desc:"Crystal Dimensions produce 8x more",  effect:()=>{ getBuilding("crystalDim").bonusMult*=8; }, requires:[] },
+    { id:"u_ib1",  name:"Eternal Bloom",          emoji:"🌸",   cost:4e22,       type:"building", desc:"Infinity Blooms produce 8x more",     effect:()=>{ getBuilding("infinityBloom").bonusMult*=8; }, requires:[] },
+    { id:"u_tg1",  name:"Temporal Omniscience",   emoji:"🕰️",   cost:8e24,       type:"building", desc:"Temporal Gods produce 10x more",      effect:()=>{ getBuilding("temporalGod").bonusMult*=10; }, requires:[] },
+    { id:"u_abs1", name:"Absolute Authority",     emoji:"🌈",   cost:2e28,       type:"building", desc:"The Absolute produces 15x more",      effect:()=>{ getBuilding("theAbsolute").bonusMult*=15; }, requires:[] },
 
-    // ── Late-game mega boosts ──────────────────────────
-    { id:"u_mega1", name:"Hyper Production",      emoji:"💫",   cost:1e15,       type:"building", desc:"All buildings x2 (mega)",             effect:()=>{ state.buildingMult*=2; },                     requires:[{type:"upgrade",id:"u_build9"},{type:"building",id:"quantumHarvest",count:1}] },
-    { id:"u_mega2", name:"Stellar Convergence",   emoji:"🌟",   cost:1e19,       type:"building", desc:"All buildings x4 (mega)",             effect:()=>{ state.buildingMult*=4; },                     requires:[{type:"upgrade",id:"u_mega1"},{type:"building",id:"stellarForge",count:1}] },
-    { id:"u_mega3", name:"Galactic Tide",         emoji:"🧠",   cost:1e23,       type:"building", desc:"All buildings x10 (mega)",            effect:()=>{ state.buildingMult*=10; },                    requires:[{type:"upgrade",id:"u_mega2"},{type:"building",id:"galacticMind",count:1}] },
-    { id:"u_mega4", name:"Void Surge",            emoji:"🕳️",   cost:1e27,       type:"building", desc:"All buildings x25 (mega)",            effect:()=>{ state.buildingMult*=25; },                    requires:[{type:"upgrade",id:"u_mega3"},{type:"building",id:"voidNexus",count:1}] },
-    { id:"u_mega5", name:"Absolute Tide",         emoji:"🌈",   cost:1e31,       type:"building", desc:"All buildings x100 (mega)",           effect:()=>{ state.buildingMult*=100; },                   requires:[{type:"upgrade",id:"u_mega4"},{type:"building",id:"theAbsolute",count:1}] },
+    { id:"u_mega1", name:"Hyper Production",      emoji:"💫",   cost:1e15,       type:"building", desc:"All buildings x2 (mega)",             effect:()=>{ state.buildingMult*=2; },                  requires:[] },
+    { id:"u_mega2", name:"Stellar Convergence",   emoji:"🌟",   cost:1e19,       type:"building", desc:"All buildings x4 (mega)",             effect:()=>{ state.buildingMult*=4; },                  requires:[] },
+    { id:"u_mega3", name:"Galactic Tide",         emoji:"🧠",   cost:1e23,       type:"building", desc:"All buildings x10 (mega)",            effect:()=>{ state.buildingMult*=10; },                 requires:[] },
+    { id:"u_mega4", name:"Void Surge",            emoji:"🕳️",   cost:1e27,       type:"building", desc:"All buildings x25 (mega)",            effect:()=>{ state.buildingMult*=25; },              requires:[] },
+    { id:"u_mega5", name:"Absolute Tide",         emoji:"🌈",   cost:1e31,       type:"building", desc:"All buildings x100 (mega)",           effect:()=>{ state.buildingMult*=100; },                requires:[] },
   ];
 
-  // ── PRESTIGE UPGRADES ─────────────────────────────────────────────────
+  // ── PRESTIGE UPGRADES ─────────────────────────────────────────────────────────
   state.prestigeUpgrades = [
-    // Tier 1 — cheap, accessible
-    { id:"p1",  name:"Ascended Fingers",    emoji:"🤚",  cost:1,   desc:"Click power +25% permanently",            effect:()=>{ state.clickMult*=1.25; },                                          requires:[] },
-    { id:"p2",  name:"Sticky Legacy",       emoji:"🍬",  cost:2,   desc:"All buildings +15% permanently",          effect:()=>{ state.buildingMult*=1.15; },                                       requires:[{type:"prestigeUpgrade",id:"p1"}] },
-    { id:"p3",  name:"Lucky Bloodline",     emoji:"🍀",  cost:2,   desc:"+8% crit chance permanently",             effect:()=>{ state.critChance+=0.08; },                                         requires:[{type:"prestigeUpgrade",id:"p1"}] },
-    { id:"p4",  name:"Cheap Rebuild",       emoji:"🏗️",  cost:3,   desc:"Buildings cost -12% permanently",         effect:()=>{ state.costMult*=0.88; },                                           requires:[{type:"prestigeUpgrade",id:"p2"}] },
-    { id:"p5",  name:"Legacy Printer",      emoji:"🖨️",  cost:4,   desc:"Prestige gain +60% permanently",          effect:()=>{ state.prestigeGainMult*=1.60; },                                   requires:[{type:"prestigeUpgrade",id:"p3"}] },
+    { id:"p1",  name:"Ascended Fingers",    emoji:"🤚",  cost:1,   desc:"Click power +25% permanently",            effect:()=>{ state.clickMult*=1.25; },                                        requires:[] },
+    { id:"p2",  name:"Sticky Legacy",       emoji:"🍬",  cost:2,   desc:"All buildings +15% permanently",          effect:()=>{ state.buildingMult*=1.15; },                                     requires:[] },
+    { id:"p3",  name:"Lucky Bloodline",     emoji:"🍀",  cost:2,   desc:"+8% crit chance permanently",             effect:()=>{ state.critChance+=0.08; },                                       requires:[] },
+    { id:"p4",  name:"Cheap Rebuild",       emoji:"🏗️",  cost:3,   desc:"Buildings cost -12% permanently",         effect:()=>{ state.costMult*=0.88; },                                       requires:[] },
+    { id:"p5",  name:"Legacy Printer",      emoji:"🖨️",  cost:4,   desc:"Prestige gain +60% permanently",          effect:()=>{ state.prestigeGainMult*=1.60; },                               requires:[] },
 
-    // Tier 2 — mid cost
-    { id:"p6",  name:"Double Ascension",    emoji:"👑",  cost:5,   desc:"Click power +50% permanently",            effect:()=>{ state.clickMult*=1.50; },                                          requires:[{type:"prestigeUpgrade",id:"p1"},{type:"prestigeUpgrade",id:"p2"}] },
-    { id:"p7",  name:"Eternal Growth",      emoji:"📈",  cost:6,   desc:"All buildings +35% permanently",          effect:()=>{ state.buildingMult*=1.35; },                                       requires:[{type:"prestigeUpgrade",id:"p4"}] },
-    { id:"p8",  name:"Fate Weaver",         emoji:"✨",  cost:7,   desc:"+20% crit chance permanently",            effect:()=>{ state.critChance+=0.20; },                                         requires:[{type:"prestigeUpgrade",id:"p5"}] },
-    { id:"p9",  name:"Prestige Rush",       emoji:"⚡",  cost:6,   desc:"Prestige gain +100% permanently",         effect:()=>{ state.prestigeGainMult*=2.0; },                                    requires:[{type:"prestigeUpgrade",id:"p5"}] },
-    { id:"p10", name:"Skittle Hoard",       emoji:"💰",  cost:8,   desc:"Buildings cost -20% permanently",         effect:()=>{ state.costMult*=0.80; },                                           requires:[{type:"prestigeUpgrade",id:"p4"},{type:"prestigeUpgrade",id:"p7"}] },
+    { id:"p6",  name:"Double Ascension",    emoji:"👑",  cost:5,   desc:"Click power +50% permanently",            effect:()=>{ state.clickMult*=1.50; },                                        requires:[] },
+    { id:"p7",  name:"Eternal Growth",      emoji:"📈",  cost:6,   desc:"All buildings +35% permanently",          effect:()=>{ state.buildingMult*=1.35; },                                     requires:[] },
+    { id:"p8",  name:"Fate Weaver",         emoji:"✨",  cost:7,   desc:"+20% crit chance permanently",            effect:()=>{ state.critChance+=0.20; },                                       requires:[] },
+    { id:"p9",  name:"Prestige Rush",       emoji:"⚡",  cost:6,   desc:"Prestige gain +100% permanently",         effect:()=>{ state.prestigeGainMult*=2.0; },                                 requires:[] },
+    { id:"p10", name:"Skittle Hoard",       emoji:"💰",  cost:8,   desc:"Buildings cost -20% permanently",         effect:()=>{ state.costMult*=0.80; },                                       requires:[] },
 
-    // Tier 3 — powerful
-    { id:"p11", name:"Transcendence",       emoji:"🌟",  cost:10,  desc:"All buildings +100% permanently",         effect:()=>{ state.buildingMult*=2; },                                          requires:[{type:"prestigeUpgrade",id:"p7"},{type:"prestigeUpgrade",id:"p6"}] },
-    { id:"p12", name:"Omniscience",         emoji:"👁️",  cost:15,  desc:"Everything +50% (click, buildings, -cost)",effect:()=>{ state.clickMult*=1.50; state.buildingMult*=1.50; state.costMult*=0.90; },requires:[{type:"prestigeUpgrade",id:"p11"}] },
-    { id:"p13", name:"Crit God",            emoji:"⚔️",  cost:12,  desc:"+35% crit chance permanently",            effect:()=>{ state.critChance+=0.35; },                                         requires:[{type:"prestigeUpgrade",id:"p8"},{type:"prestigeUpgrade",id:"p3"}] },
-    { id:"p14", name:"Power Surge",         emoji:"🔋",  cost:10,  desc:"Click power x2 permanently",              effect:()=>{ state.clickMult*=2; },                                             requires:[{type:"prestigeUpgrade",id:"p6"}] },
-    { id:"p15", name:"Void Mastery",        emoji:"🕳️",  cost:14,  desc:"All buildings +200% permanently",         effect:()=>{ state.buildingMult*=3; },                                          requires:[{type:"prestigeUpgrade",id:"p11"}] },
+    { id:"p11", name:"Transcendence",       emoji:"🌟",  cost:10,  desc:"All buildings +100% permanently",         effect:()=>{ state.buildingMult*=2; },                                        requires:[] },
+    { id:"p12", name:"Omniscience",         emoji:"👁️",  cost:15,  desc:"Everything +50% permanently",effect:()=>{ state.clickMult*=1.50; state.buildingMult*=1.50; state.costMult*=0.85; },                                   requires:[] },
+    { id:"p13", name:"Crit God",            emoji:"⚔️",  cost:12,  desc:"+35% crit chance permanently",            effect:()=>{ state.critChance+=0.35; },                                   requires:[] },
+    { id:"p14", name:"Power Surge",         emoji:"🔋",  cost:10,  desc:"Click power x2 permanently",              effect:()=>{ state.clickMult*=2; },                                         requires:[] },
+    { id:"p15", name:"Void Mastery",        emoji:"🕳️",  cost:14,  desc:"All buildings +200% permanently",         effect:()=>{ state.buildingMult*=3; },                                        requires:[] },
 
-    // Tier 4 — very powerful, expensive
-    { id:"p16", name:"Dimensional King",    emoji:"🌀",  cost:20,  desc:"Buildings cost -35% permanently",         effect:()=>{ state.costMult*=0.65; },                                           requires:[{type:"prestigeUpgrade",id:"p10"},{type:"prestigeUpgrade",id:"p12"}] },
-    { id:"p17", name:"Star Forger",         emoji:"🌟",  cost:25,  desc:"All buildings x5 permanently",            effect:()=>{ state.buildingMult*=5; },                                          requires:[{type:"prestigeUpgrade",id:"p15"},{type:"prestigeUpgrade",id:"p12"}] },
-    { id:"p18", name:"Click Storm",         emoji:"⛈️",  cost:20,  desc:"Click power x5 permanently",              effect:()=>{ state.clickMult*=5; },                                             requires:[{type:"prestigeUpgrade",id:"p14"},{type:"prestigeUpgrade",id:"p12"}] },
-    { id:"p19", name:"Prestige Legend",     emoji:"🏆",  cost:30,  desc:"Prestige gain x5 permanently",            effect:()=>{ state.prestigeGainMult*=5; },                                      requires:[{type:"prestigeUpgrade",id:"p9"},{type:"prestigeUpgrade",id:"p16"}] },
-    { id:"p20", name:"Fortune's Favor",     emoji:"🎲",  cost:18,  desc:"+50% crit chance permanently",            effect:()=>{ state.critChance+=0.50; },                                         requires:[{type:"prestigeUpgrade",id:"p13"}] },
+    { id:"p16", name:"Dimensional King",    emoji:"🌀",  cost:20,  desc:"Buildings cost -35% permanently",         effect:()=>{ state.costMult*=0.65; },                                         requires:[] },
+    { id:"p17", name:"Star Forger",         emoji:"🌟",  cost:25,  desc:"All buildings x5 permanently",            effect:()=>{ state.buildingMult*=5; },                                        requires:[] },
+    { id:"p18", name:"Click Storm",         emoji:"⛈️",  cost:20,  desc:"Click power x5 permanently",              effect:()=>{ state.clickMult*=5; },                                       requires:[] },
+    { id:"p19", name:"Prestige Legend",     emoji:"🏆",  cost:30,  desc:"Prestige gain x5 permanently",            effect:()=>{ state.prestigeGainMult*=5; },                                    requires:[] },
+    { id:"p20", name:"Fortune's Favor",     emoji:"🎲",  cost:18,  desc:"+50% crit chance permanently",            effect:()=>{ state.critChance+=0.50; },                                       requires:[] },
 
-    // Tier 5 — endgame prestige upgrades
-    { id:"p21", name:"Absolute Power",      emoji:"💎",  cost:50,  desc:"All buildings x10 permanently",           effect:()=>{ state.buildingMult*=10; },                                         requires:[{type:"prestigeUpgrade",id:"p17"},{type:"prestigeUpgrade",id:"p15"}] },
-    { id:"p22", name:"God's Touch",         emoji:"🤲",  cost:50,  desc:"Click power x10 permanently",             effect:()=>{ state.clickMult*=10; },                                            requires:[{type:"prestigeUpgrade",id:"p18"},{type:"prestigeUpgrade",id:"p14"}] },
-    { id:"p23", name:"The Singularity",     emoji:"🌈",  cost:75,  desc:"Everything x3 and crit +40%",             effect:()=>{ state.clickMult*=3; state.buildingMult*=3; state.critChance+=0.40; },requires:[{type:"prestigeUpgrade",id:"p21"},{type:"prestigeUpgrade",id:"p22"}] },
-    { id:"p24", name:"Infinite Prestige",   emoji:"♾️",  cost:100, desc:"Prestige gain x10 + buildings x5",        effect:()=>{ state.prestigeGainMult*=10; state.buildingMult*=5; },               requires:[{type:"prestigeUpgrade",id:"p19"},{type:"prestigeUpgrade",id:"p21"}] },
-    { id:"p25", name:"The Absolute",        emoji:"⭐",  cost:150, desc:"ALL multipliers x5. The ultimate power.",  effect:()=>{ state.clickMult*=5; state.buildingMult*=5; state.costMult*=0.50; state.prestigeGainMult*=5; state.critChance+=1.0; },requires:[{type:"prestigeUpgrade",id:"p23"},{type:"prestigeUpgrade",id:"p24"}] },
+    { id:"p21", name:"Absolute Power",      emoji:"💎",  cost:50,  desc:"All buildings x10 permanently",           effect:()=>{ state.buildingMult*=10; },                                       requires:[] },
+    { id:"p22", name:"God's Touch",         emoji:"🤲",  cost:50,  desc:"Click power x10 permanently",             effect:()=>{ state.clickMult*=10; },                                          requires:[] },
+    { id:"p23", name:"The Singularity",     emoji:"🌈",  cost:75,  desc:"Everything x3 and crit +40%",             effect:()=>{ state.clickMult*=3; state.buildingMult*=3; state.critChance+=0.40; }, requires:[] },
+    { id:"p24", name:"Infinite Prestige",   emoji:"♾️",  cost:100, desc:"Prestige gain x10 + buildings x5",        effect:()=>{ state.prestigeGainMult*=10; state.buildingMult*=5; },           requires:[] },
+    { id:"p25", name:"The Absolute",        emoji:"⭐",  cost:150, desc:"ALL multipliers x5. The ultimate power.",  effect:()=>{ state.clickMult*=5; state.buildingMult*=5; state.costMult*=0.50; state.prestigeGainMult*=5; }, requires:[] },
   ];
 
   // ── ACHIEVEMENTS ──────────────────────────────────────────────────────
   const achievements = [
-    { id:"a1",  name:"First Click",       emoji:"👆",  desc:"Click once",                           check:()=>state.totalClicks>=1,                                         reward:()=>{ state.clickPower+=0.5; } },
-    { id:"a2",  name:"Sweet Tooth",       emoji:"🍬",  desc:"Earn 100 skittles",                    check:()=>state.totalEarned>=100,                                       reward:()=>{ state.skittles+=20; } },
-    { id:"a3",  name:"Factory Owner",     emoji:"🏭",  desc:"Own 5 Sugar Plants",                   check:()=>getBuilding("sugarPlant").count>=5,                           reward:()=>{ state.buildingMult*=1.10; } },
-    { id:"a4",  name:"Click Maniac",      emoji:"🖱️",  desc:"Click 500 times",                      check:()=>state.totalClicks>=500,                                       reward:()=>{ state.clickPower+=5; } },
-    { id:"a5",  name:"Millionaire",       emoji:"💰",  desc:"Earn 1 million skittles",              check:()=>state.totalEarned>=1e6,                                       reward:()=>{ state.buildingMult*=1.05; } },
-    { id:"a6",  name:"Billionaire",       emoji:"🤑",  desc:"Earn 1 billion skittles",              check:()=>state.totalEarned>=1e9,                                       reward:()=>{ state.prestigePoints+=5; } },
+    { id:"a1",  name:"First Click",       emoji:"👆",  desc:"Click once",                           check:()=>state.totalClicks>=1,                                         reward:()=>{ state.clickPower+=0.25; } },
+    { id:"a2",  name:"Sweet Tooth",       emoji:"🍬",  desc:"Earn 100 skittles",                    check:()=>state.totalEarned>=100,                                       reward:()=>{ state.skittles+=50; } },
+    { id:"a3",  name:"Factory Owner",     emoji:"🏭",  desc:"Own 5 Sugar Plants",                   check:()=>getBuilding("sugarPlant").count>=5,                           reward:()=>{ state.buildingMult*=1.15; } },
+    { id:"a4",  name:"Click Maniac",      emoji:"🖱️",  desc:"Click 500 times",                      check:()=>state.totalClicks>=500,                                       reward:()=>{ state.clickPower*=1.2; } },
+    { id:"a5",  name:"Millionaire",       emoji:"💰",  desc:"Earn 1 million skittles",              check:()=>state.totalEarned>=1e6,                                       reward:()=>{ state.buildingMult*=1.3; } },
+    { id:"a6",  name:"Billionaire",       emoji:"🤑",  desc:"Earn 1 billion skittles",              check:()=>state.totalEarned>=1e9,                                       reward:()=>{ state.prestigeGainMult*=1.5; } },
     { id:"a7",  name:"Prestige Master",   emoji:"⭐",  desc:"Reach prestige 10",                    check:()=>state.prestige>=10,                                           reward:()=>{ state.clickMult*=1.25; } },
-    { id:"a8",  name:"Crit Champion",     emoji:"⚡",  desc:"Get 1000 crits",                       check:()=>state.totalCrits>=1000,                                       reward:()=>{ state.critChance+=0.10; } },
-    { id:"a9",  name:"Hot Streak",        emoji:"🔥",  desc:"Get a 10x hot streak",                 check:()=>state.bestHotStreak>=10,                                      reward:()=>{ state.clickPower*=1.5; } },
+    { id:"a8",  name:"Crit Champion",     emoji:"⚡",  desc:"Get 1000 crits",                       check:()=>state.totalCrits>=1000,                                       reward:()=>{ state.critChance+=0.05; } },
+    { id:"a9",  name:"Hot Streak",        emoji:"🔥",  desc:"Get a 10x hot streak",                 check:()=>state.bestHotStreak>=10,                                      reward:()=>{ state.clickPower+=5; } },
     { id:"a10", name:"Wizard School",     emoji:"🧙",  desc:"Own 10 Candy Wizards",                 check:()=>getBuilding("candyWizard").count>=10,                         reward:()=>{ getBuilding("candyWizard").bonusMult*=1.5; } },
-    { id:"a11", name:"Late Game",         emoji:"🌌",  desc:"Own a Dimension Rift",                 check:()=>getBuilding("dimensionRift").count>=1,                        reward:()=>{ state.prestige+=1; } },
-    { id:"a12", name:"Endgame",           emoji:"👑",  desc:"Own a Skittle God",                    check:()=>getBuilding("skittleGod").count>=1,                           reward:()=>{ state.buildingMult*=3; } },
+    { id:"a11", name:"Late Game",         emoji:"🌌",  desc:"Own a Dimension Rift",                 check:()=>getBuilding("dimensionRift").count>=1,                        reward:()=>{ state.prestigeGainMult*=1.3; } },
+    { id:"a12", name:"Endgame",           emoji:"👑",  desc:"Own a Skittle God",                    check:()=>getBuilding("skittleGod").count>=1,                           reward:()=>{ state.buildingMult*=2; } },
     { id:"a13", name:"Time Lord",         emoji:"⏰",  desc:"Own a Time Weaver",                    check:()=>getBuilding("timeWeaver").count>=1,                           reward:()=>{ state.buildingMult*=2; } },
     { id:"a14", name:"Quantum Being",     emoji:"⚛️",  desc:"Own a Quantum Harvester",              check:()=>getBuilding("quantumHarvest").count>=1,                       reward:()=>{ state.buildingMult*=2; } },
-    { id:"a15", name:"Star Forger",       emoji:"🌟",  desc:"Own a Stellar Forge",                  check:()=>getBuilding("stellarForge").count>=1,                         reward:()=>{ state.buildingMult*=3; } },
-    { id:"a16", name:"Galaxy Brain",      emoji:"🧠",  desc:"Own a Galactic Mind",                  check:()=>getBuilding("galacticMind").count>=1,                         reward:()=>{ state.buildingMult*=4; } },
-    { id:"a17", name:"Void Walker",       emoji:"🕳️",  desc:"Own a Void Nexus",                     check:()=>getBuilding("voidNexus").count>=1,                            reward:()=>{ state.buildingMult*=5; } },
-    { id:"a18", name:"Prestige Legend",   emoji:"🏆",  desc:"Reach prestige 50",                    check:()=>state.prestige>=50,                                           reward:()=>{ state.clickMult*=2; state.buildingMult*=2; } },
-    { id:"a19", name:"Click God",         emoji:"✋",  desc:"Click 10,000 times",                   check:()=>state.totalClicks>=10000,                                     reward:()=>{ state.clickPower*=3; } },
-    { id:"a20", name:"Absolute Master",   emoji:"🌈",  desc:"Own The Absolute",                     check:()=>getBuilding("theAbsolute").count>=1,                          reward:()=>{ state.buildingMult*=10; state.clickMult*=5; } },
+    { id:"a15", name:"Star Forger",       emoji:"🌟",  desc:"Own a Stellar Forge",                  check:()=>getBuilding("stellarForge").count>=1,                         reward:()=>{ state.buildingMult*=2; } },
+    { id:"a16", name:"Galaxy Brain",      emoji:"🧠",  desc:"Own a Galactic Mind",                  check:()=>getBuilding("galacticMind").count>=1,                         reward:()=>{ state.buildingMult*=2; } },
+    { id:"a17", name:"Void Walker",       emoji:"🕳️",  desc:"Own a Void Nexus",                     check:()=>getBuilding("voidNexus").count>=1,                            reward:()=>{ state.buildingMult*=2; } },
+    { id:"a18", name:"Prestige Legend",   emoji:"🏆",  desc:"Reach prestige 50",                    check:()=>state.prestige>=50,                                           reward:()=>{ state.clickMult*=2; } },
+    { id:"a19", name:"Click God",         emoji:"✋",  desc:"Click 10,000 times",                   check:()=>state.totalClicks>=10000,                                     reward:()=>{ state.clickPower*=2; } },
+    { id:"a20", name:"Absolute Master",   emoji:"🌈",  desc:"Own The Absolute",                     check:()=>getBuilding("theAbsolute").count>=1,                          reward:()=>{ state.buildingMult*=3; } },
   ];
 
   // ── HELPERS ───────────────────────────────────────────────────────────
   function getBuilding(id) { return state.buildings.find(b=>b.id===id); }
   function getBuildingCount(id) { const b=getBuilding(id); return b?b.count:0; }
 
-  function formatNumber(n) {
+  function formatNumber(n, decimals=0) {
     n = Number(n);
     if (!isFinite(n)) return "∞";
-    n = Math.floor(n);
-    if (!state.useShortFormat) return n.toLocaleString();
+    if (!state.useShortFormat) {
+      if (decimals > 0 && n < 1000000) {
+        return n.toFixed(decimals);
+      }
+      return Math.floor(n).toLocaleString();
+    }
     const units = ["","K","M","B","T","Qa","Qi","Sx","Sp","Oc","No","De","Ud","Dd","Td","Qad","Qid","Sxd","Spd","Ocd","Nod","Vg","UVg"];
     let value = Math.abs(n), u = 0;
     while (value >= 1000 && u < units.length - 1) { value /= 1000; u++; }
-    if (u === 0) return Math.floor(value).toString();
+    if (u === 0) return value.toFixed(decimals);
     return value.toFixed(value >= 100 ? 0 : value >= 10 ? 1 : 2) + units[u];
   }
 
   function getPrestigeGain() {
-    return Math.max(0, Math.floor((Math.sqrt(state.totalEarned) / 100) * state.prestigeGainMult));
+    const requiredEarned = 100000;
+    if (state.totalEarned < requiredEarned) return 0;
+    return Math.max(0, Math.floor((Math.sqrt(state.totalEarned - requiredEarned + 1) / 100) * state.prestigeGainMult));
   }
 
   function getPrestigeMultiplier() { return Math.pow(1.10, state.prestige); }
@@ -753,7 +735,7 @@
   function canBuyUpgrade(upg)        { return state.skittles >= upg.cost && upg.requires.every(isRequirementMet); }
   function canBuyPrestigeUpgrade(upg){ return state.prestigePoints >= upg.cost && upg.requires.every(isRequirementMet); }
 
-  // ── AUDIO ─────────────────────────────────────────────────────────────
+  // ── AUDIO ────────────────────────────────────────────────────────────
   let audioCtx = null;
 
   function ensureAudio() {
@@ -866,7 +848,6 @@
     state.skittles -= price;
     state.totalSpent += price;
     b.count += 1;
-    // cost is now always recalculated from baseCost, so b.cost is not needed
     playBuySound();
     msg(`${b.name} bought! (${b.count})`);
     updateAll();
@@ -906,11 +887,12 @@
 
   function prestigeReset() {
     const gain = getPrestigeGain();
-    if (gain < 1) { msg("Need more total earned", false); return; }
+    if (gain < 1) { msg("Need 100,000 total earned to prestige", false); return; }
     if (!confirm(`Prestige will reset your progress and give you ${gain} new prestige point(s). Your prestige upgrades stay. Continue?`)) return;
 
     state.prestige += gain;
     state.prestigePoints += gain;
+    state.totalEarned = 0;
     state.skittles = 0;
     state.clickPower = 1;
     state.critChance = 0.10;
@@ -966,12 +948,12 @@
             <span class="building-name">${lockIcon}${b.emoji} ${b.name}</span>
             <span class="building-count">${b.count}</span>
           </div>
-          <div class="building-stats">${b.desc} · ${formatNumber(b.baseCps)} CPS each</div>
+          <div class="building-stats">${b.desc} · ${formatNumber(b.baseCps, 2)} CPS each</div>
           <button class="main-btn ${affordClass}" type="button" data-buy-building="${b.id}"${isLocked ? " disabled" : ""}>
             Buy · <span class="pill">${formatNumber(price)}</span>
             ${isLocked
               ? `<small>Locked${lockInfo}</small>`
-              : `<small>Own: ${b.count} · Output: ${formatNumber(totalFromThis)} CPS (${pct.toFixed(1)}%)</small>`}
+              : `<small>Own: ${b.count} · Output: ${formatNumber(totalFromThis, 2)} CPS (${pct.toFixed(1)}%)</small>`}
           </button>
         </div>`;
     }
@@ -1001,49 +983,52 @@
     html += `</div>`;
     els.upgrades.innerHTML = html;
     els.upgrades.scrollTop = scrollTop;
-    document.querySelectorAll("[data-buy-upgrade]").forEach(btn => {
-      btn.onclick = () => buyUpgrade(btn.dataset.buyUpgrade);
-    });
+    attachUpgradeHandlers();
   }
 
-  function renderPrestigePanel() {
+  function renderPrestige() {
     const scrollTop = els.prestigePanel.scrollTop;
     const gain = getPrestigeGain();
+    const canPrestige = gain >= 1;
     let html = `
       <div class="card">
-        <div class="section-title">Prestige Reset</div>
-        <button class="main-btn" type="button" id="prestigeResetBtn">
-          ⭐ Reset Progress <span class="pill">+${gain} PP</span>
-          <small>Gain ${gain} prestige points. Each gives +10% to all production. Current bonus: +${Math.floor((getPrestigeMultiplier()-1)*100)}%</small>
+        <div class="section-title">Prestige</div>
+        <div class="stats">
+          <div class="stat-row"><span class="stat-label">Total Earned (this run):</span><span class="stat-value">${formatNumber(state.totalEarned)}</span></div>
+          <div class="stat-row"><span class="stat-label">Required for 100k:</span><span class="stat-value">100,000</span></div>
+          <div class="stat-row"><span class="stat-label">Prestige Points Available:</span><span class="stat-value">${gain}</span></div>
+          <div class="stat-row"><span class="stat-label">Total Prestige Level:</span><span class="stat-value">${state.prestige}</span></div>
+          <div class="stat-row"><span class="stat-label">Prestige Points Banked:</span><span class="stat-value">${state.prestigePoints}</span></div>
+        </div>
+        <button class="main-btn${canPrestige ? " available-prestige" : ""}" type="button" id="prestigeBtn"${canPrestige ? "" : " disabled"}>
+          Prestige Now
+          <small>Resets progress but gives ${gain} permanent point(s)</small>
         </button>
-        <small style="color:var(--muted);display:block;margin-top:8px;">Prestige points: ${state.prestigePoints} · Total level: ${state.prestige}</small>
+        <div class="legend">Each prestige level permanently increases all production by 10%.</div>
       </div>
       <div class="card">
-        <div class="section-title">Prestige Upgrades (${state.prestigeUpgradesBought.size}/${state.prestigeUpgrades.length} bought)</div>`;
-
+        <div class="section-title">Prestige Upgrades (${state.prestigeUpgradesBought.size}/${state.prestigeUpgrades.length} purchased)</div>`;
+    
     for (const upg of state.prestigeUpgrades) {
       const bought = state.prestigeUpgradesBought.has(upg.id);
       const locked = !upg.requires.every(isRequirementMet);
       const affordable = state.prestigePoints >= upg.cost;
-      let status = affordable ? "Available" : `Need ${upg.cost - state.prestigePoints} more PP`;
+      let status = affordable ? "Affordable" : "Need points";
       if (bought) status = "Purchased";
       else if (locked) status = "Locked";
-      const statusClass = bought ? "" : locked ? "locked" : "available-prestige";
+      const statusClass = bought ? "" : locked ? "locked" : affordable ? "unlocked" : "";
       html += `
         <button class="main-btn ${statusClass}" type="button" data-buy-prestige="${upg.id}"${bought ? " disabled" : ""}>
-          ${upg.emoji} ${upg.name} <span class="pill">${upg.cost} PP</span>
+          ${upg.emoji} ${upg.name} <span class="pill${locked ? " locked" : ""}">${upg.cost} PP</span>
           <small>${upg.desc}</small>
-          <div class="upg-status${locked ? ' locked' : affordable && !bought ? ' available' : ''}">${status}${locked ? ` · Needs: ${requirementsText(upg.requires)}` : ""}</div>
+          <div class="upg-status ${locked ? "locked" : affordable && !bought ? "available" : ""}">${status}${locked ? ` · Needs: ${requirementsText(upg.requires)}` : ""}</div>
         </button>`;
     }
     html += `</div>`;
     els.prestigePanel.innerHTML = html;
     els.prestigePanel.scrollTop = scrollTop;
-    const btn = document.getElementById("prestigeResetBtn");
-    if (btn) btn.onclick = prestigeReset;
-    document.querySelectorAll("[data-buy-prestige]").forEach(btn => {
-      btn.onclick = () => buyPrestigeUpgrade(btn.dataset.buyPrestige);
-    });
+    document.getElementById("prestigeBtn").addEventListener("click", prestigeReset);
+    attachPrestigeUpgradeHandlers();
   }
 
   function renderAchievements() {
@@ -1051,13 +1036,7 @@
     let html = `<div class="card"><div class="section-title">Achievements (${state.achievementsDone.size}/${achievements.length})</div>`;
     for (const a of achievements) {
       const done = state.achievementsDone.has(a.id);
-      html += `
-        <div class="achievement${done ? " done" : ""}">
-          <div>
-            <strong>${done ? "✅" : "⭕"} ${a.emoji} ${a.name}</strong>
-            <small>${a.desc}</small>
-          </div>
-        </div>`;
+      html += `<div class="achievement${done ? " done" : ""}"><div><strong>${a.emoji} ${a.name}</strong><small>${a.desc}</small></div><div>${done ? "✓" : ""}</div></div>`;
     }
     html += `</div>`;
     els.achievements.innerHTML = html;
@@ -1065,253 +1044,246 @@
   }
 
   function renderSettings() {
-    els.settings.innerHTML = `
+    const scrollTop = els.settings.scrollTop;
+    let html = `
       <div class="card">
-        <div class="section-title">Audio — Master Volume</div>
+        <div class="section-title">Settings</div>
+        <div class="setting-line">
+          <button class="main-btn" type="button" id="toggleSound">${state.sound ? "🔊 Sound ON" : "🔇 Sound OFF"}</button>
+          <button class="main-btn" type="button" id="toggleFormat">Format: ${state.useShortFormat ? "Short" : "Full"}</button>
+        </div>
         <div class="vol-control">
-          <label class="vol-label">Master Volume (${Math.round(state.soundVolume*100)}%)</label>
-          <input type="range" id="volSlider" min="0" max="100" value="${Math.round(state.soundVolume*100)}">
+          <label class="vol-label">Master Volume: ${Math.round(state.soundVolume * 100)}%</label>
+          <input type="range" id="volMaster" min="0" max="100" value="${state.soundVolume * 100}">
         </div>
-      </div>
-      <div class="card">
-        <div class="section-title">Individual Sounds</div>
-        <div class="vol-control"><label class="vol-label">Click Sound (${Math.round(state.clickSoundVol*100)}%)</label><input type="range" id="clickVolSlider" min="0" max="100" value="${Math.round(state.clickSoundVol*100)}"></div>
-        <div class="vol-control"><label class="vol-label">Buy Sound (${Math.round(state.buySoundVol*100)}%)</label><input type="range" id="buyVolSlider" min="0" max="100" value="${Math.round(state.buySoundVol*100)}"></div>
-        <div class="vol-control"><label class="vol-label">Crit Sound (${Math.round(state.critSoundVol*100)}%)</label><input type="range" id="critVolSlider" min="0" max="100" value="${Math.round(state.critSoundVol*100)}"></div>
-        <div class="vol-control"><label class="vol-label">Prestige Sound (${Math.round(state.prestigeSoundVol*100)}%)</label><input type="range" id="prestigeVolSlider" min="0" max="100" value="${Math.round(state.prestigeSoundVol*100)}"></div>
-      </div>
-      <div class="card">
-        <div class="section-title">Options</div>
+        <div class="vol-control">
+          <label class="vol-label">Click Sound: ${Math.round(state.clickSoundVol * 100)}%</label>
+          <input type="range" id="volClick" min="0" max="100" value="${state.clickSoundVol * 100}">
+        </div>
+        <div class="vol-control">
+          <label class="vol-label">Buy Sound: ${Math.round(state.buySoundVol * 100)}%</label>
+          <input type="range" id="volBuy" min="0" max="100" value="${state.buySoundVol * 100}">
+        </div>
+        <div class="vol-control">
+          <label class="vol-label">Crit Sound: ${Math.round(state.critSoundVol * 100)}%</label>
+          <input type="range" id="volCrit" min="0" max="100" value="${state.critSoundVol * 100}">
+        </div>
+        <div class="vol-control">
+          <label class="vol-label">Prestige Sound: ${Math.round(state.prestigeSoundVol * 100)}%</label>
+          <input type="range" id="volPrestige" min="0" max="100" value="${state.prestigeSoundVol * 100}">
+        </div>
         <div class="setting-line">
-          <button class="main-btn" type="button" id="soundBtn">Sound: ${state.sound ? "✓ On" : "✗ Off"}</button>
-          <button class="main-btn" type="button" id="particlesBtn">Effects: ${state.particles ? "✓ On" : "✗ Off"}</button>
+          <button class="main-btn" type="button" id="toggleParticles">${state.particles ? "✨ Particles ON" : "✨ Particles OFF"}</button>
+          <button class="main-btn" type="button" id="exportBtn">📥 Export Save</button>
+          <button class="main-btn" type="button" id="importBtn">📤 Import Save</button>
+          <button class="main-btn" type="button" id="resetBtn">🗑️ Reset Game</button>
         </div>
+        <textarea class="savebox" id="saveData" readonly></textarea>
       </div>
-      <div class="card">
-        <div class="section-title">Display</div>
-        <div class="setting-line">
-          <button class="main-btn" type="button" id="formatBtn">Numbers: ${state.useShortFormat ? "Short" : "Full"}</button>
-          <button class="main-btn" type="button" id="autosaveBtn">Autosave: ${state.autoSave ? "✓ On" : "✗ Off"}</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="section-title">Save &amp; Load</div>
-        <div class="setting-line">
-          <button class="main-btn" type="button" id="saveBtn">💾 Save Now</button>
-          <button class="main-btn" type="button" id="exportBtn">📤 Export</button>
-          <button class="main-btn" type="button" id="importBtn">📥 Import</button>
-        </div>
-        <textarea id="saveBox" class="savebox" placeholder="Paste save data here or export your save..."></textarea>
-        <div class="setting-line" style="margin-top:8px;">
-          <button class="main-btn" type="button" id="wipeBtn" style="background:rgba(255,107,125,0.1);border-color:rgba(255,107,125,0.3);">🗑️ Wipe Save</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="section-title">Stats</div>
-        <div class="legend">
-          Total Clicks: ${formatNumber(state.totalClicks)}<br>
-          Total Earned: ${formatNumber(state.totalEarned)}<br>
-          Total Spent: ${formatNumber(state.totalSpent)}<br>
-          Total Crits: ${formatNumber(state.totalCrits)}<br>
-          Best Hot Streak: <span style="color:#ffff00;font-weight:700;">${state.bestHotStreak}</span><br>
-          Prestige Level: ${state.prestige}
-        </div>
-      </div>`;
-
-    document.getElementById("volSlider").addEventListener("input", e => { state.soundVolume=Number(e.target.value)/100; renderSettings(); saveGame(); });
-    document.getElementById("clickVolSlider").addEventListener("input", e => { state.clickSoundVol=Number(e.target.value)/100; renderSettings(); saveGame(); });
-    document.getElementById("buyVolSlider").addEventListener("input", e => { state.buySoundVol=Number(e.target.value)/100; renderSettings(); saveGame(); });
-    document.getElementById("critVolSlider").addEventListener("input", e => { state.critSoundVol=Number(e.target.value)/100; renderSettings(); saveGame(); });
-    document.getElementById("prestigeVolSlider").addEventListener("input", e => { state.prestigeSoundVol=Number(e.target.value)/100; renderSettings(); saveGame(); });
-    document.getElementById("soundBtn").addEventListener("click", () => { state.sound=!state.sound; updateAll(); saveGame(); });
-    document.getElementById("particlesBtn").addEventListener("click", () => { state.particles=!state.particles; updateAll(); saveGame(); });
-    document.getElementById("formatBtn").addEventListener("click", () => { state.useShortFormat=!state.useShortFormat; updateAll(); saveGame(); });
-    document.getElementById("autosaveBtn").addEventListener("click", () => { state.autoSave=!state.autoSave; updateAll(); saveGame(); });
-    document.getElementById("saveBtn").addEventListener("click", () => { saveGame(); msg("Saved!"); });
-    document.getElementById("exportBtn").addEventListener("click", exportSave);
-    document.getElementById("importBtn").addEventListener("click", importSave);
-    document.getElementById("wipeBtn").addEventListener("click", wipeSave);
+    `;
+    els.settings.innerHTML = html;
+    els.settings.scrollTop = scrollTop;
+    updateSaveBox();
+    attachSettingHandlers();
   }
 
+  function renderPrestigePanel() { renderPrestige(); }
+
   function updateHUD() {
-    const cps = getCPS();
-    els.skittles.textContent = formatNumber(state.skittles);
-    els.cps.textContent = formatNumber(cps);
-    els.clickPower.textContent = formatNumber(Math.floor(state.clickPower * state.clickMult * 100) / 100);
-    els.critChance.textContent = Math.min(99, Math.floor(state.critChance * 100)) + "%";
+    els.skittles.textContent = formatNumber(state.skittles, state.skittles < 1000 ? 2 : 0);
+    els.cps.textContent = formatNumber(getCPS(), 2);
+    els.clickPower.textContent = formatNumber(state.clickPower, 2);
+    els.critChance.textContent = `${(state.critChance * 100).toFixed(1)}%`;
     els.prestige.textContent = state.prestige;
-    els.prestigeTop.textContent = state.prestige;
-    const hotStreakEl = document.getElementById("hotStreak");
-    if (hotStreakEl) { hotStreakEl.textContent = state.hotStreak; hotStreakEl.style.color = state.hotStreak > 0 ? "#ffff00" : "var(--accent)"; }
+    els.prestigeTop.textContent = state.prestigePoints;
+    els.hotStreak.textContent = state.hotStreak;
   }
 
   function updateAll() {
     updateHUD();
     renderShop();
     renderUpgrades();
-    renderPrestigePanel();
+    renderPrestige();
     renderAchievements();
     renderSettings();
   }
 
   function attachBuildingHandlers() {
-    document.querySelectorAll("[data-buy-building]").forEach(btn => {
-      btn.onclick = () => buyBuilding(btn.dataset.buyBuilding);
+    for (const btn of els.shop.querySelectorAll("[data-buy-building]")) {
+      btn.addEventListener("click", () => buyBuilding(btn.dataset.buyBuilding));
+    }
+  }
+
+  function attachUpgradeHandlers() {
+    for (const btn of els.upgrades.querySelectorAll("[data-buy-upgrade]")) {
+      btn.addEventListener("click", () => buyUpgrade(btn.dataset.buyUpgrade));
+    }
+  }
+
+  function attachPrestigeUpgradeHandlers() {
+    for (const btn of els.prestigePanel.querySelectorAll("[data-buy-prestige]")) {
+      btn.addEventListener("click", () => buyPrestigeUpgrade(btn.dataset.buyPrestige));
+    }
+  }
+
+  function attachSettingHandlers() {
+    document.getElementById("toggleSound").addEventListener("click", () => {
+      state.sound = !state.sound;
+      renderSettings();
+    });
+    document.getElementById("toggleFormat").addEventListener("click", () => {
+      state.useShortFormat = !state.useShortFormat;
+      renderSettings();
+      updateHUD();
+    });
+    document.getElementById("toggleParticles").addEventListener("click", () => {
+      state.particles = !state.particles;
+      renderSettings();
+    });
+    document.getElementById("volMaster").addEventListener("input", e => {
+      state.soundVolume = e.target.value / 100;
+      renderSettings();
+    });
+    document.getElementById("volClick").addEventListener("input", e => {
+      state.clickSoundVol = e.target.value / 100;
+      renderSettings();
+    });
+    document.getElementById("volBuy").addEventListener("input", e => {
+      state.buySoundVol = e.target.value / 100;
+      renderSettings();
+    });
+    document.getElementById("volCrit").addEventListener("input", e => {
+      state.critSoundVol = e.target.value / 100;
+      renderSettings();
+    });
+    document.getElementById("volPrestige").addEventListener("input", e => {
+      state.prestigeSoundVol = e.target.value / 100;
+      renderSettings();
+    });
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      msg("Save copied to clipboard!");
+      navigator.clipboard.writeText(document.getElementById("saveData").value);
+    });
+    document.getElementById("importBtn").addEventListener("click", () => {
+      const save = prompt("Paste your save data:");
+      if (save) loadGameFromString(save);
+    });
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (confirm("Reset everything? This cannot be undone!")) {
+        localStorage.removeItem("skittleClickerSave");
+        location.reload();
+      }
     });
   }
 
-  function openTab(id) {
-    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
-    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-    const panelId = id === "prestige" ? "prestigePanel" : id;
-    const panel = document.getElementById(panelId);
-    if (panel) panel.classList.add("active");
-    document.querySelector(`.tab[data-tab="${id}"]`).classList.add("active");
-  }
-
-  // ── SAVE / LOAD ───────────────────────────────────────────────────────
-  function getSaveData() {
-    return {
-      v: 2,
-      skittles: state.skittles, clickPower: state.clickPower, critChance: state.critChance,
-      critMult: state.critMult, prestige: state.prestige, prestigePoints: state.prestigePoints,
-      buildingMult: state.buildingMult, clickMult: state.clickMult, costMult: state.costMult,
-      prestigeGainMult: state.prestigeGainMult, cpsFromUpgrades: state.cpsFromUpgrades,
-      useShortFormat: state.useShortFormat, sound: state.sound, soundVolume: state.soundVolume,
-      clickSoundVol: state.clickSoundVol, buySoundVol: state.buySoundVol, critSoundVol: state.critSoundVol,
-      prestigeSoundVol: state.prestigeSoundVol, particles: state.particles, autoSave: state.autoSave,
-      totalClicks: state.totalClicks, totalEarned: state.totalEarned, totalSpent: state.totalSpent,
-      totalCrits: state.totalCrits, bestHotStreak: state.bestHotStreak,
-      buildings: state.buildings.map(b=>({ id:b.id, count:b.count, bonusMult:b.bonusMult })),
-      clickUpgradesBought: [...state.clickUpgradesBought],
-      prestigeUpgradesBought: [...state.prestigeUpgradesBought],
-      achievementsDone: [...state.achievementsDone]
+  function updateSaveBox() {
+    const save = {
+      state: {
+        skittles: state.skittles,
+        clickPower: state.clickPower,
+        critChance: state.critChance,
+        critMult: state.critMult,
+        prestige: state.prestige,
+        prestigePoints: state.prestigePoints,
+        prestigeSpent: state.prestigeSpent,
+        buildingMult: state.buildingMult,
+        clickMult: state.clickMult,
+        costMult: state.costMult,
+        prestigeGainMult: state.prestigeGainMult,
+        cpsFromUpgrades: state.cpsFromUpgrades,
+        totalClicks: state.totalClicks,
+        totalEarned: state.totalEarned,
+        totalSpent: state.totalSpent,
+        totalCrits: state.totalCrits,
+        hotStreak: state.hotStreak,
+        bestHotStreak: state.bestHotStreak,
+        buildings: state.buildings.map(b => ({ id: b.id, count: b.count, bonusMult: b.bonusMult })),
+        clickUpgradesBought: Array.from(state.clickUpgradesBought),
+        prestigeUpgradesBought: Array.from(state.prestigeUpgradesBought),
+        achievementsDone: Array.from(state.achievementsDone),
+      }
     };
-  }
-
-  function applySaveData(data) {
-    if (!data || typeof data !== "object") throw new Error("Invalid save");
-    state.skittles             = Number(data.skittles || 0);
-    state.clickPower           = Number(data.clickPower || 1);
-    state.critChance           = Number(data.critChance || 0.10);
-    state.critMult             = Number(data.critMult || 1);
-    state.prestige             = Number(data.prestige || 0);
-    state.prestigePoints       = Number(data.prestigePoints || 0);
-    state.buildingMult         = Number(data.buildingMult || 1);
-    state.clickMult            = Number(data.clickMult || 1);
-    state.costMult             = Number(data.costMult || 1);
-    state.prestigeGainMult     = Number(data.prestigeGainMult || 1);
-    state.cpsFromUpgrades      = Number(data.cpsFromUpgrades || 1);
-    state.useShortFormat       = data.useShortFormat !== undefined ? !!data.useShortFormat : true;
-    state.sound                = data.sound !== undefined ? !!data.sound : true;
-    state.soundVolume          = Number(data.soundVolume ?? 0.4);
-    state.clickSoundVol        = Number(data.clickSoundVol ?? 1.0);
-    state.buySoundVol          = Number(data.buySoundVol ?? 0.5);
-    state.critSoundVol         = Number(data.critSoundVol ?? 0.5);
-    state.prestigeSoundVol     = Number(data.prestigeSoundVol ?? 0.5);
-    state.particles            = data.particles !== undefined ? !!data.particles : true;
-    state.autoSave             = data.autoSave !== undefined ? !!data.autoSave : true;
-    state.totalClicks          = Number(data.totalClicks || 0);
-    state.totalEarned          = Number(data.totalEarned || 0);
-    state.totalSpent           = Number(data.totalSpent || 0);
-    state.totalCrits           = Number(data.totalCrits || 0);
-    state.bestHotStreak        = Number(data.bestHotStreak || 0);
-
-    if (Array.isArray(data.buildings)) {
-      for (const saved of data.buildings) {
-        const b = getBuilding(saved.id);
-        if (b) { b.count = Number(saved.count || 0); b.bonusMult = Number(saved.bonusMult || 1); }
-      }
-    }
-
-    state.clickUpgradesBought   = new Set(Array.isArray(data.clickUpgradesBought)    ? data.clickUpgradesBought    : []);
-    state.prestigeUpgradesBought= new Set(Array.isArray(data.prestigeUpgradesBought) ? data.prestigeUpgradesBought : []);
-    state.achievementsDone      = new Set(Array.isArray(data.achievementsDone)        ? data.achievementsDone        : []);
-
-    // Re-apply upgrade effects from bought upgrades
-    for (const upg of state.upgrades) {
-      if (state.clickUpgradesBought.has(upg.id)) {
-        // Effects are already stored in state, don't double-apply
-      }
-    }
+    document.getElementById("saveData").value = JSON.stringify(save);
   }
 
   function saveGame() {
-    try { localStorage.setItem("skittleClickerSave_v2", JSON.stringify(getSaveData())); return true; }
-    catch(e) { return false; }
+    updateSaveBox();
+    localStorage.setItem("skittleClickerSave", document.getElementById("saveData").value);
   }
 
   function loadGame() {
-    const raw = localStorage.getItem("skittleClickerSave_v2")
-             || localStorage.getItem("skittleClickerSave"); // legacy fallback
-    if (!raw) return;
-    try { applySaveData(JSON.parse(raw)); } catch(e) { console.warn("Load failed:", e); }
+    const save = localStorage.getItem("skittleClickerSave");
+    if (save) loadGameFromString(save);
   }
 
-  function exportSave() {
-    const box = document.getElementById("saveBox");
-    box.value = JSON.stringify(getSaveData());
-    box.select();
-    msg("Save exported! Copy the text above.");
-  }
-
-  function importSave() {
-    const box = document.getElementById("saveBox");
-    const raw = box.value.trim();
-    if (!raw) { msg("Paste save data first", false); return; }
+  function loadGameFromString(saveStr) {
     try {
-      applySaveData(JSON.parse(raw));
-      updateAll(); saveGame();
-      msg("Save imported!");
-    } catch(e) { msg("Invalid save data", false); }
-  }
-
-  function wipeSave() {
-    if (!confirm("Delete save from this device? This cannot be undone.")) return;
-    localStorage.removeItem("skittleClickerSave_v2");
-    localStorage.removeItem("skittleClickerSave");
-    location.reload();
-  }
-
-  // ── GAME LOOP ─────────────────────────────────────────────────────────
-  let shopRenderTimer = 0;
-  function tick() {
-    const cpsGain = getCPS() / 10;
-    state.skittles += cpsGain;
-    state.totalEarned += cpsGain;
-    checkAchievements();
-    updateHUD();
-
-    // Re-render shop every 5 ticks (0.5s) so button states stay fresh
-    shopRenderTimer++;
-    if (shopRenderTimer >= 5) {
-      shopRenderTimer = 0;
-      renderShop();
+      const data = JSON.parse(saveStr);
+      const s = data.state;
+      state.skittles = s.skittles || 0;
+      state.clickPower = s.clickPower || 1;
+      state.critChance = s.critChance || 0.10;
+      state.critMult = s.critMult || 1;
+      state.prestige = s.prestige || 0;
+      state.prestigePoints = s.prestigePoints || 0;
+      state.prestigeSpent = s.prestigeSpent || 0;
+      state.buildingMult = s.buildingMult || 1;
+      state.clickMult = s.clickMult || 1;
+      state.costMult = s.costMult || 1;
+      state.prestigeGainMult = s.prestigeGainMult || 1;
+      state.cpsFromUpgrades = s.cpsFromUpgrades || 1;
+      state.totalClicks = s.totalClicks || 0;
+      state.totalEarned = s.totalEarned || 0;
+      state.totalSpent = s.totalSpent || 0;
+      state.totalCrits = s.totalCrits || 0;
+      state.hotStreak = s.hotStreak || 0;
+      state.bestHotStreak = s.bestHotStreak || 0;
+      if (s.buildings) {
+        for (const b of s.buildings) {
+          const building = getBuilding(b.id);
+          if (building) { building.count = b.count; building.bonusMult = b.bonusMult; }
+        }
+      }
+      state.clickUpgradesBought = new Set(s.clickUpgradesBought || []);
+      state.prestigeUpgradesBought = new Set(s.prestigeUpgradesBought || []);
+      state.achievementsDone = new Set(s.achievementsDone || []);
+      msg("Game loaded!");
+      updateAll();
+    } catch (e) {
+      msg("Invalid save data", false);
     }
   }
 
-  skittleImg.addEventListener("pointerdown", e => {
-    e.preventDefault();
-    if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
-    clickSkittle(e);
-  }, { passive: false });
+  // ── TAB SWITCHING ─────────────────────────────────────────────────────
+  function switchTab(tabName) {
+    for (const panel of document.querySelectorAll(".panel")) panel.classList.remove("active");
+    for (const tab of document.querySelectorAll(".tab")) tab.classList.remove("active");
+    const panel = document.getElementById(tabName);
+    if (tabName === "prestige") panel = els.prestigePanel;
+    if (panel) panel.classList.add("active");
+    event.target.classList.add("active");
+  }
 
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.addEventListener("click", () => openTab(tab.dataset.tab));
-  });
+  for (const tab of document.querySelectorAll(".tab")) {
+    tab.addEventListener("click", e => {
+      const tabName = e.target.dataset.tab;
+      if (tabName === "prestige") renderPrestige();
+      else if (tabName === "achievements") renderAchievements();
+      else if (tabName === "settings") renderSettings();
+      switchTab(tabName === "prestige" ? "prestigePanel" : tabName);
+    });
+  }
 
-  setInterval(tick, 100);
-  setInterval(() => { if (state.autoSave) saveGame(); }, 10000);
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden" && state.autoSave) saveGame();
-  });
-  window.addEventListener("beforeunload", () => { if (state.autoSave) saveGame(); });
+  skittleImg.addEventListener("click", clickSkittle);
+  skittleImg.addEventListener("touchstart", e => clickSkittle(e.touches[0]), { passive: true });
 
   loadGame();
   updateAll();
-  saveGame();
+  setInterval(updateHUD, 100);
+  setInterval(()=>{ state.skittles += getCPS() / 10; state.totalEarned += getCPS() / 10; updateHUD(); }, 100);
+  setInterval(saveGame, 10000);
 })();
 </script>
+
 </body>
 </html>
