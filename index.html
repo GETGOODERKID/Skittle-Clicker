@@ -542,7 +542,7 @@
     <div id="msg" style="margin:0;padding:8px 12px;"></div>
 
     <div class="legend">
-      Click the orb to gain candy. Buy buildings for passive income. Each achievement boosts all buildings by 10%. Prestige at 100,000 earned to gain permanent points.
+      Click the orb to gain candy. Buy buildings for passive income. Each achievement boosts all buildings by 5%. Prestige at 100,000 earned to gain permanent points.
     </div>
   </div>
 </div>
@@ -602,13 +602,20 @@
     totalEarned: 0,
     totalSpent: 0,
     totalCrits: 0,
+    totalSold: 0,
+    totalSoldValue: 0,
     hotStreak: 0,
     bestHotStreak: 0,
     lastPrestigeEarned: 0,
     buildings: [],
     upgrades: [],
     prestigeUpgrades: [],
-    rainActive: false
+    rainActive: false,
+    waterfall: true,
+    paused: false,
+    reduceMotion: false,
+    startedAt: Date.now(),
+    lastTick: Date.now()
   };
 
   function building(def) {
@@ -731,6 +738,58 @@
     { id:"a13", name:"Time Lord",         desc:"Own a Time Weaver",                    check:()=>getBuilding("timeWeaver").count>=1,                           reward:()=>{ updateAchievementBonus(); } },
     { id:"a14", name:"Rain Dance",        desc:"Have 10,000 candy orbs at once",       check:()=>state.candyOrbs>=10000,                                       reward:()=>{ updateAchievementBonus(); } },
     { id:"a15", name:"Click God",         desc:"Click 10,000 times",                   check:()=>state.totalClicks>=10000,                                     reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a16", name:"Starter Pack",      desc:"Own 25 Candy Makers",                  check:()=>getBuilding("candyMaker").count>=25,                          reward:()=>{ updateAchievementBonus(); } },
+    { id:"a17", name:"Greenhouse",        desc:"Own 25 Sugar Plants",                  check:()=>getBuilding("sugarPlant").count>=25,                          reward:()=>{ updateAchievementBonus(); } },
+    { id:"a18", name:"Industrialist",     desc:"Own 50 Candy Factories",               check:()=>getBuilding("candyFactory").count>=50,                        reward:()=>{ updateAchievementBonus(); } },
+    { id:"a19", name:"Vault Lord",        desc:"Own 25 Chocolate Vaults",              check:()=>getBuilding("chocolateVault").count>=25,                      reward:()=>{ updateAchievementBonus(); } },
+    { id:"a20", name:"Core Stabilizer",   desc:"Own 10 Candy Cores",                   check:()=>getBuilding("candyCore").count>=10,                           reward:()=>{ updateAchievementBonus(); } },
+    { id:"a21", name:"Rift Walker",       desc:"Own 10 Dimension Rifts",               check:()=>getBuilding("dimensionRift").count>=10,                       reward:()=>{ updateAchievementBonus(); } },
+    { id:"a22", name:"Infinity Loop",     desc:"Own 10 Infinity Machines",             check:()=>getBuilding("infinityMachine").count>=10,                     reward:()=>{ updateAchievementBonus(); } },
+    { id:"a23", name:"Universe Builder",  desc:"Own 5 Universe Engines",               check:()=>getBuilding("universeEngine").count>=5,                       reward:()=>{ updateAchievementBonus(); } },
+    { id:"a24", name:"Omni Supply",       desc:"Own 3 Omni-Factories",                 check:()=>getBuilding("omniFactory").count>=3,                          reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a25", name:"Steady Flow",       desc:"Reach 1,000 candy/sec",                check:()=>getCPS()>=1000,                                               reward:()=>{ updateAchievementBonus(); } },
+    { id:"a26", name:"Firehose",          desc:"Reach 1,000,000 candy/sec",            check:()=>getCPS()>=1e6,                                                reward:()=>{ updateAchievementBonus(); } },
+    { id:"a27", name:"Galaxy Printer",    desc:"Reach 1,000,000,000 candy/sec",        check:()=>getCPS()>=1e9,                                                reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a28", name:"Big Spender",       desc:"Spend 1 million candy orbs",           check:()=>state.totalSpent>=1e6,                                        reward:()=>{ updateAchievementBonus(); } },
+    { id:"a29", name:"Whale",             desc:"Spend 1 billion candy orbs",           check:()=>state.totalSpent>=1e9,                                        reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a30", name:"Lucky Run",         desc:"Get a 25x best streak",                check:()=>state.bestHotStreak>=25,                                      reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a31", name:"First Sale",        desc:"Sell 1 building",                      check:()=>state.totalSold>=1,                                           reward:()=>{ updateAchievementBonus(); } },
+    { id:"a32", name:"Moving Stock",      desc:"Sell 10 buildings",                    check:()=>state.totalSold>=10,                                          reward:()=>{ updateAchievementBonus(); } },
+    { id:"a33", name:"Liquidation",       desc:"Sell 100 buildings",                   check:()=>state.totalSold>=100,                                         reward:()=>{ updateAchievementBonus(); } },
+    { id:"a34", name:"Fire Sale",         desc:"Sell 1,000 buildings",                 check:()=>state.totalSold>=1000,                                        reward:()=>{ updateAchievementBonus(); } },
+    { id:"a35", name:"Market Maker",      desc:"Sell 10,000 buildings",                check:()=>state.totalSold>=10000,                                       reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a36", name:"Pocket Change",     desc:"Earn 1,000 from selling",              check:()=>state.totalSoldValue>=1000,                                   reward:()=>{ updateAchievementBonus(); } },
+    { id:"a37", name:"Reseller",          desc:"Earn 1,000,000 from selling",          check:()=>state.totalSoldValue>=1e6,                                    reward:()=>{ updateAchievementBonus(); } },
+    { id:"a38", name:"Liquid Wealth",     desc:"Earn 1,000,000,000 from selling",      check:()=>state.totalSoldValue>=1e9,                                    reward:()=>{ updateAchievementBonus(); } },
+    { id:"a39", name:"Cleanup Crew",      desc:"Sell 100,000 buildings",               check:()=>state.totalSold>=100000,                                      reward:()=>{ updateAchievementBonus(); } },
+    { id:"a40", name:"Global Liquidation",desc:"Sell 1,000,000 buildings",             check:()=>state.totalSold>=1000000,                                     reward:()=>{ updateAchievementBonus(); } },
+    { id:"a41", name:"Auction House",     desc:"Earn 1,000,000,000,000 from selling",  check:()=>state.totalSoldValue>=1e12,                                   reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a42", name:"Storm Drain",       desc:"Reach 1,000,000,000,000 candy/sec",    check:()=>getCPS()>=1e12,                                               reward:()=>{ updateAchievementBonus(); } },
+    { id:"a43", name:"World Eater",       desc:"Reach 1,000,000,000,000,000 candy/sec",check:()=>getCPS()>=1e15,                                               reward:()=>{ updateAchievementBonus(); } },
+    { id:"a44", name:"Reality Flood",     desc:"Reach 1,000,000,000,000,000,000 candy/sec", check:()=>getCPS()>=1e18,                                           reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a45", name:"Big Click Energy",  desc:"Click 100,000 times",                  check:()=>state.totalClicks>=100000,                                    reward:()=>{ updateAchievementBonus(); } },
+    { id:"a46", name:"Click Storm",       desc:"Click 1,000,000 times",                check:()=>state.totalClicks>=1000000,                                   reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a47", name:"Crit Machine",      desc:"Get 10,000 crits",                     check:()=>state.totalCrits>=10000,                                      reward:()=>{ updateAchievementBonus(); } },
+    { id:"a48", name:"Crit Factory",      desc:"Get 100,000 crits",                    check:()=>state.totalCrits>=100000,                                     reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a49", name:"Deep Pockets",      desc:"Spend 1,000,000,000,000 candy orbs",   check:()=>state.totalSpent>=1e12,                                      reward:()=>{ updateAchievementBonus(); } },
+    { id:"a50", name:"Leviathan",         desc:"Spend 1,000,000,000,000,000 candy orbs", check:()=>state.totalSpent>=1e15,                                   reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a51", name:"Trillionaire",      desc:"Earn 1,000,000,000,000 candy orbs",    check:()=>state.totalEarned>=1e12,                                     reward:()=>{ updateAchievementBonus(); } },
+    { id:"a52", name:"Quadrillionaire",   desc:"Earn 1,000,000,000,000,000 candy orbs",check:()=>state.totalEarned>=1e15,                                     reward:()=>{ updateAchievementBonus(); } },
+
+    { id:"a53", name:"Candy Stash",       desc:"Have 1,000,000 candy orbs at once",    check:()=>state.candyOrbs>=1e6,                                        reward:()=>{ updateAchievementBonus(); } },
+    { id:"a54", name:"Candy Vault",       desc:"Have 1,000,000,000 candy orbs at once",check:()=>state.candyOrbs>=1e9,                                        reward:()=>{ updateAchievementBonus(); } },
+    { id:"a55", name:"Candy Ocean",       desc:"Have 1,000,000,000,000 candy orbs at once", check:()=>state.candyOrbs>=1e12,                                  reward:()=>{ updateAchievementBonus(); } },
   ];
 
   // ── HELPERS ──────────────────────────────────────────────────────────
@@ -738,7 +797,7 @@
   function getBuildingCount(id) { const b=getBuilding(id); return b?b.count:0; }
 
   function updateAchievementBonus() {
-    state.achievementBonus = Math.pow(1.1, state.achievementsDone.size);
+    state.achievementBonus = Math.pow(1.05, state.achievementsDone.size);
   }
 
   function formatNumber(n, decimals=0) {
@@ -791,7 +850,7 @@
     const startFactor = Math.pow(BUILDING_GROWTH, startCount);
     const series = (Math.pow(BUILDING_GROWTH, amount) - 1) / BUILDING_GROWTH_DELTA;
     const totalPaid = b.baseCost * state.costMult * startFactor * series;
-    return Math.floor(totalPaid * 0.5);
+    return Math.floor(totalPaid * 0.45);
   }
 
   function getMaxAffordableCount(b) {
@@ -828,6 +887,14 @@
       if (r.type === "prestigeUpgrade"){ const p = state.prestigeUpgrades.find(x=>x.id===r.id); return p?p.name:r.id; }
       return "Unknown";
     }).join(", ");
+  }
+
+  function formatDurationSeconds(totalSeconds) {
+    totalSeconds = Math.max(0, Math.floor(totalSeconds || 0));
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    const s = totalSeconds % 60;
+    return `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
   }
 
   function isBuildingLocked(b) { return b.unlockAt > 0 && state.totalEarned < b.unlockAt; }
@@ -887,6 +954,8 @@
 
   // ── WATERFALL SYSTEM ────────────────────────────────────────────────────
   function spawnWaterfall() {
+    if (!state.waterfall) return;
+    if (state.reduceMotion) return;
     // Activate based on current total (on-hand), not lifetime earned.
     if (state.candyOrbs < 1000) return;
 
@@ -1016,10 +1085,13 @@
   function playCritSound()   { playTone(780, 0.1, "sawtooth", 1.5, "crit"); setTimeout(()=>playTone(1100,0.06,"square",1,"crit"),50); }
   function playPrestigeSound(){ playTone(220,0.15,"sine",1.2,"prestige"); setTimeout(()=>playTone(330,0.15,"sine",1.2,"prestige"),80); setTimeout(()=>playTone(440,0.15,"sine",1.2,"prestige"),160); }
 
-  function shake() { game.classList.remove("shake"); void game.offsetWidth; game.classList.add("shake"); }
+  function shake() {
+    if (state.reduceMotion) return;
+    game.classList.remove("shake"); void game.offsetWidth; game.classList.add("shake");
+  }
 
   function spawnParticle(text, x, y, color="white") {
-    if (!state.particles) return;
+    if (!state.particles || state.reduceMotion) return;
     const p = document.createElement("div");
     p.className = "particle"; p.textContent = text;
     p.style.left = `${x}px`; p.style.top = `${y}px`; p.style.color = color;
@@ -1072,9 +1144,6 @@
 
     checkAchievements();
     updateHUD();
-    // Re-render so disabled/enabled states update when your total changes.
-    renderShop();
-    renderUpgrades();
   }
 
   // ── BUY FUNCTIONS ─────────────────────────────────────────────────────
@@ -1116,6 +1185,8 @@
     const refund = getBuildingSellRefund(b, amount);
     state.candyOrbs += refund;
     b.count -= amount;
+    state.totalSold += amount;
+    state.totalSoldValue += refund;
     playBuySound();
     msg(`Sold ×${amount} for ${formatNumber(refund)}`);
     updateAll();
@@ -1251,7 +1322,6 @@
     }
     els.shop.innerHTML = html;
     els.shop.scrollTop = scrollTop;
-    attachBuildingHandlers();
   }
 
   function renderUpgrades() {
@@ -1293,7 +1363,6 @@
     html += `</div>`;
     els.upgrades.innerHTML = html;
     els.upgrades.scrollTop = scrollTop;
-    attachUpgradeHandlers();
   }
 
   function switchUpgradeTab(tab) {
@@ -1306,14 +1375,18 @@
   function renderStats() {
     const scrollTop = els.stats.scrollTop;
     const cps = getCPS();
+    const playedSeconds = (Date.now() - state.startedAt) / 1000;
     let html = `
       <div class="card">
         <div class="section-title">Game Statistics</div>
         <div class="stats">
+          <div class="stat-row"><span class="stat-label">Time Played:</span><span class="stat-value">${formatDurationSeconds(playedSeconds)}</span></div>
           <div class="stat-row"><span class="stat-label">Total Earned:</span><span class="stat-value">${formatNumber(state.totalEarned)}</span></div>
           <div class="stat-row"><span class="stat-label">Total Clicks:</span><span class="stat-value">${formatNumber(state.totalClicks)}</span></div>
           <div class="stat-row"><span class="stat-label">Total Crits:</span><span class="stat-value">${formatNumber(state.totalCrits)}</span></div>
           <div class="stat-row"><span class="stat-label">Total Spent:</span><span class="stat-value">${formatNumber(state.totalSpent)}</span></div>
+          <div class="stat-row"><span class="stat-label">Total Sold:</span><span class="stat-value">${formatNumber(state.totalSold)}</span></div>
+          <div class="stat-row"><span class="stat-label">Sell Earnings:</span><span class="stat-value">${formatNumber(state.totalSoldValue)}</span></div>
           <div class="stat-row"><span class="stat-label">Best Streak:</span><span class="stat-value">${state.bestHotStreak}</span></div>
           <div class="stat-row"><span class="stat-label">Current Candy/sec:</span><span class="stat-value">${formatNumber(cps, 2)}</span></div>
           <div class="stat-row"><span class="stat-label">Achievement Bonus:</span><span class="stat-value">+${((state.achievementBonus - 1) * 100).toFixed(1)}%</span></div>
@@ -1371,7 +1444,6 @@
     html += `</div></div>`;
     els.prestige.innerHTML = html;
     els.prestige.scrollTop = scrollTop;
-    attachPrestigeHandlers();
   }
 
   function renderAchievements() {
@@ -1398,19 +1470,19 @@
       <div class="card">
         <div class="section-title">Audio</div>
         <div class="vol-control">
-          <label class="vol-label">Master: ${Math.round(state.soundVolume * 100)}%</label>
+          <label class="vol-label" id="lblMasterVol">Master: ${Math.round(state.soundVolume * 100)}%</label>
           <input type="range" min="0" max="100" value="${state.soundVolume * 100}" id="masterVol">
         </div>
         <div class="vol-control">
-          <label class="vol-label">Click: ${Math.round(state.clickSoundVol * 100)}%</label>
+          <label class="vol-label" id="lblClickVol">Click: ${Math.round(state.clickSoundVol * 100)}%</label>
           <input type="range" min="0" max="100" value="${state.clickSoundVol * 100}" id="clickVol">
         </div>
         <div class="vol-control">
-          <label class="vol-label">Buy: ${Math.round(state.buySoundVol * 100)}%</label>
+          <label class="vol-label" id="lblBuyVol">Buy: ${Math.round(state.buySoundVol * 100)}%</label>
           <input type="range" min="0" max="100" value="${state.buySoundVol * 100}" id="buyVol">
         </div>
         <div class="vol-control">
-          <label class="vol-label">Crit: ${Math.round(state.critSoundVol * 100)}%</label>
+          <label class="vol-label" id="lblCritVol">Crit: ${Math.round(state.critSoundVol * 100)}%</label>
           <input type="range" min="0" max="100" value="${state.critSoundVol * 100}" id="critVol">
         </div>
       </div>
@@ -1423,6 +1495,14 @@
         <div class="setting-line">
           <button class="main-btn" id="toggleSound">${state.sound ? "Mute" : "Unmute"}</button>
           <button class="main-btn" id="toggleAutoSave">${state.autoSave ? "Pause Auto-Save" : "Resume Auto-Save"}</button>
+        </div>
+        <div class="setting-line">
+          <button class="main-btn" id="toggleWaterfall">${state.waterfall ? "Waterfall: On" : "Waterfall: Off"}</button>
+          <button class="main-btn" id="restartBtn">Restart Game</button>
+        </div>
+        <div class="setting-line">
+          <button class="main-btn" id="togglePause">${state.paused ? "Resume Game" : "Pause Game"}</button>
+          <button class="main-btn" id="toggleReduceMotion">${state.reduceMotion ? "Motion: Reduced" : "Motion: Full"}</button>
         </div>
       </div>
       <div class="card">
@@ -1439,40 +1519,65 @@
     attachSettingsHandlers();
   }
 
-  function attachBuildingHandlers() {
-    for (const btn of els.shop.querySelectorAll("[data-buy-building]")) {
-      btn.addEventListener("click", (ev)=>buyBuilding(btn.dataset.buyBuilding, ev));
-    }
-    for (const btn of els.shop.querySelectorAll("[data-sell-building]")) {
-      btn.addEventListener("click", (ev)=>sellBuilding(btn.dataset.sellBuilding, ev));
-    }
-  }
+  function attachDelegatedHandlers() {
+    els.shop.addEventListener("click", (ev) => {
+      const target = ev.target.closest?.("button");
+      if (!target || target.disabled) return;
+      if (target.dataset.buyBuilding) buyBuilding(target.dataset.buyBuilding, ev);
+      else if (target.dataset.sellBuilding) sellBuilding(target.dataset.sellBuilding, ev);
+    });
 
-  function attachUpgradeHandlers() {
-    for (const btn of els.upgrades.querySelectorAll("[data-buy-upgrade]")) {
-      btn.addEventListener("click", ()=>buyUpgrade(btn.dataset.buyUpgrade));
-    }
-  }
+    els.upgrades.addEventListener("click", (ev) => {
+      const target = ev.target.closest?.("button");
+      if (!target || target.disabled) return;
+      if (target.dataset.buyUpgrade) buyUpgrade(target.dataset.buyUpgrade);
+    });
 
-  function attachPrestigeHandlers() {
-    const prestigeBtn = els.prestige.querySelector("#prestigeBtn");
-    if (prestigeBtn) prestigeBtn.addEventListener("click", prestigeReset);
-    for (const btn of els.prestige.querySelectorAll("[data-buy-prestige]")) {
-      btn.addEventListener("click", ()=>buyPrestigeUpgrade(btn.dataset.buyPrestige));
-    }
+    els.prestige.addEventListener("click", (ev) => {
+      const target = ev.target.closest?.("button");
+      if (!target || target.disabled) return;
+      if (target.id === "prestigeBtn") prestigeReset();
+      else if (target.dataset.buyPrestige) buyPrestigeUpgrade(target.dataset.buyPrestige);
+    });
   }
 
   function attachSettingsHandlers() {
-    document.getElementById("masterVol").addEventListener("input", (e)=>{ state.soundVolume = e.target.value / 100; renderSettings(); });
-    document.getElementById("clickVol").addEventListener("input", (e)=>{ state.clickSoundVol = e.target.value / 100; });
-    document.getElementById("buyVol").addEventListener("input", (e)=>{ state.buySoundVol = e.target.value / 100; });
-    document.getElementById("critVol").addEventListener("input", (e)=>{ state.critSoundVol = e.target.value / 100; });
+    const masterVol = document.getElementById("masterVol");
+    const clickVol = document.getElementById("clickVol");
+    const buyVol = document.getElementById("buyVol");
+    const critVol = document.getElementById("critVol");
+
+    const lblMaster = document.getElementById("lblMasterVol");
+    const lblClick = document.getElementById("lblClickVol");
+    const lblBuy = document.getElementById("lblBuyVol");
+    const lblCrit = document.getElementById("lblCritVol");
+
+    masterVol.addEventListener("input", (e)=>{ state.soundVolume = e.target.value / 100; if (lblMaster) lblMaster.textContent = `Master: ${e.target.value}%`; });
+    clickVol.addEventListener("input", (e)=>{ state.clickSoundVol = e.target.value / 100; if (lblClick) lblClick.textContent = `Click: ${e.target.value}%`; });
+    buyVol.addEventListener("input", (e)=>{ state.buySoundVol = e.target.value / 100; if (lblBuy) lblBuy.textContent = `Buy: ${e.target.value}%`; });
+    critVol.addEventListener("input", (e)=>{ state.critSoundVol = e.target.value / 100; if (lblCrit) lblCrit.textContent = `Crit: ${e.target.value}%`; });
+
     document.getElementById("toggleShortFormat").addEventListener("click", ()=>{ state.useShortFormat=!state.useShortFormat; updateAll(); });
     document.getElementById("toggleParticles").addEventListener("click", ()=>{ state.particles=!state.particles; updateAll(); });
     document.getElementById("toggleSound").addEventListener("click", ()=>{ state.sound=!state.sound; updateAll(); });
     document.getElementById("toggleAutoSave").addEventListener("click", ()=>{ state.autoSave=!state.autoSave; updateAll(); });
+    document.getElementById("toggleWaterfall").addEventListener("click", ()=>{ state.waterfall=!state.waterfall; updateAll(); });
+    document.getElementById("togglePause").addEventListener("click", ()=>{ state.paused=!state.paused; updateAll(); });
+    document.getElementById("toggleReduceMotion").addEventListener("click", ()=>{ state.reduceMotion=!state.reduceMotion; updateAll(); });
     document.getElementById("exportBtn").addEventListener("click", ()=>{ document.getElementById("saveData").select(); });
-    document.getElementById("importBtn").addEventListener("click", ()=>{ const data = prompt("Paste save data:"); if (data) { try { importState(JSON.parse(data)); } catch(e) { msg("Invalid save data", false); } } });
+    document.getElementById("importBtn").addEventListener("click", ()=>{
+      const data = prompt("Paste save data:");
+      if (!data) return;
+      try {
+        importState(JSON.parse(data));
+        msg("Save imported.");
+        updateAll();
+        saveGame();
+      } catch(e) {
+        msg("Invalid save data", false);
+      }
+    });
+    document.getElementById("restartBtn").addEventListener("click", ()=>{ restartGame(); });
   }
 
   function updateHUD() {
@@ -1510,6 +1615,8 @@
       totalEarned: state.totalEarned,
       totalSpent: state.totalSpent,
       totalCrits: state.totalCrits,
+      totalSold: state.totalSold,
+      totalSoldValue: state.totalSoldValue,
       hotStreak: state.hotStreak,
       bestHotStreak: state.bestHotStreak,
       lastPrestigeEarned: state.lastPrestigeEarned,
@@ -1517,6 +1624,11 @@
       clickUpgradesBought: Array.from(state.clickUpgradesBought),
       prestigeUpgradesBought: Array.from(state.prestigeUpgradesBought),
       achievementsDone: Array.from(state.achievementsDone)
+      ,waterfall: state.waterfall
+      ,paused: state.paused
+      ,reduceMotion: state.reduceMotion
+      ,startedAt: state.startedAt
+      ,lastTick: Date.now()
     };
   }
 
@@ -1535,6 +1647,8 @@
     state.totalEarned = data.totalEarned || 0;
     state.totalSpent = data.totalSpent || 0;
     state.totalCrits = data.totalCrits || 0;
+    state.totalSold = data.totalSold || 0;
+    state.totalSoldValue = data.totalSoldValue || 0;
     state.hotStreak = data.hotStreak || 0;
     state.bestHotStreak = data.bestHotStreak || 0;
     state.lastPrestigeEarned = data.lastPrestigeEarned || 0;
@@ -1545,12 +1659,58 @@
     state.clickUpgradesBought = new Set(data.clickUpgradesBought || []);
     state.prestigeUpgradesBought = new Set(data.prestigeUpgradesBought || []);
     state.achievementsDone = new Set(data.achievementsDone || []);
+    state.waterfall = data.waterfall ?? true;
+    state.paused = data.paused ?? false;
+    state.reduceMotion = data.reduceMotion ?? false;
+    state.startedAt = data.startedAt || Date.now();
+    state.lastTick = data.lastTick || Date.now();
     updateAchievementBonus();
+  }
+
+  function resetToDefaults() {
+    state.candyOrbs = 0;
+    state.clickPower = 1;
+    state.critChance = 0.10;
+    state.critMult = 1;
+    state.prestige = 0;
+    state.prestigePoints = 0;
+    state.buildingMult = 1;
+    state.clickMult = 1;
+    state.costMult = 1;
+    state.prestigeGainMult = 1;
+    state.cpsFromUpgrades = 1;
+    state.achievementBonus = 1;
+    state.clickUpgradesBought = new Set();
+    state.prestigeUpgradesBought = new Set();
+    state.achievementsDone = new Set();
+    state.totalClicks = 0;
+    state.totalEarned = 0;
+    state.totalSpent = 0;
+    state.totalCrits = 0;
+    state.totalSold = 0;
+    state.totalSoldValue = 0;
+    state.hotStreak = 0;
+    state.bestHotStreak = 0;
+    state.lastPrestigeEarned = 0;
+    state.waterfall = true;
+    state.paused = false;
+    state.reduceMotion = false;
+    state.startedAt = Date.now();
+    state.lastTick = Date.now();
+    for (const b of state.buildings) { b.count = 0; b.bonusMult = 1; }
+    updateAchievementBonus();
+  }
+
+  function restartGame() {
+    if (!confirm("Restart? This deletes your save and resets everything.")) return;
+    resetToDefaults();
+    localStorage.removeItem("candyOrbIdleSave");
+    msg("Restarted.");
     updateAll();
-    saveGame();
   }
 
   function saveGame() {
+    state.lastTick = Date.now();
     if (state.autoSave) localStorage.setItem("candyOrbIdleSave", JSON.stringify(exportState()));
   }
 
@@ -1558,7 +1718,22 @@
     const saved = localStorage.getItem("candyOrbIdleSave");
     if (saved) {
       try {
-        importState(JSON.parse(saved));
+        const data = JSON.parse(saved);
+        const last = Number(data.lastTick || Date.now());
+        importState(data);
+
+        const now = Date.now();
+        const offlineSeconds = Math.max(0, Math.min(7200, (now - last) / 1000));
+        if (offlineSeconds >= 1 && !state.paused) {
+          const cps = getCPS();
+          const gained = cps * offlineSeconds;
+          if (gained > 0) {
+            state.candyOrbs += gained;
+            state.totalEarned += gained;
+            msg(`Offline +${formatNumber(gained)} (${Math.floor(offlineSeconds)}s)`);
+          }
+        }
+        state.lastTick = now;
       } catch (e) {
         console.error("Failed to load save:", e);
       }
@@ -1575,6 +1750,19 @@
   const orbFallback = document.getElementById("orbFallback");
   orbImg.addEventListener("click", clickOrb);
   orbFallback.addEventListener("click", clickOrb);
+
+  attachDelegatedHandlers();
+
+  document.addEventListener("keydown", (ev) => {
+    const activePanelId = document.querySelector(".panel.active")?.id;
+    if (activePanelId !== "shop") return;
+    if (ev.target && (ev.target.tagName === "INPUT" || ev.target.tagName === "TEXTAREA")) return;
+
+    if (ev.key === "1") setBuyMode(1);
+    else if (ev.key === "2") setBuyMode(10);
+    else if (ev.key === "3") setBuyMode(100);
+    else if (ev.key === "4") setBuyMode("max");
+  });
 
   // Show fallback if image fails to load
   orbImg.addEventListener("error", () => {
@@ -1595,13 +1783,13 @@
 
   // Passive income
   setInterval(() => {
-    const cps = getCPS();
-    state.candyOrbs += cps / 10;
-    state.totalEarned += cps / 10;
+    if (!state.paused) {
+      const cps = getCPS();
+      state.candyOrbs += cps / 10;
+      state.totalEarned += cps / 10;
+    }
+    state.lastTick = Date.now();
     updateHUD();
-    const activePanelId = document.querySelector(".panel.active")?.id;
-    if (activePanelId === "shop") renderShop();
-    else if (activePanelId === "upgrades") renderUpgrades();
     checkAchievements();
     spawnWaterfall();
   }, 100);
