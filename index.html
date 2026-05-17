@@ -514,7 +514,7 @@
       </div>
       <div class="stat-row">
         <span class="stat-label">Prestige Level:</span>
-        <span class="stat-value" id="prestige">0</span>
+        <span class="stat-value" id="prestigeLevel">0</span>
       </div>
     </div>
 
@@ -536,7 +536,7 @@
     cps: document.getElementById("cps"),
     clickPower: document.getElementById("clickPower"),
     critChance: document.getElementById("critChance"),
-    prestige: document.getElementById("prestige"),
+    prestigeLevel: document.getElementById("prestigeLevel"),
     prestigeTop: document.getElementById("prestigeTop"),
     msg: document.getElementById("msg"),
     shop: document.getElementById("shop"),
@@ -653,7 +653,18 @@
     { id:"u_build8",  name:"Cosmic Convergence",  cost:5e13,       type:"building", desc:"All buildings x5",                    effect:()=>{ state.buildingMult*=5; },           requires:[] },
     { id:"u_build9",  name:"Reality Engine",      cost:1.2e15,     type:"building", desc:"All buildings x7",                    effect:()=>{ state.buildingMult*=7; },           requires:[] },
 
-    { id:"u_cost5",  name:"Absolute Economy",     cost:50000000,   type:"cost",     desc:"Buildings cost -30%",                 effect:()=>{ state.costMult*=0.70; },            requires:[] },
+    { id:"u_cm1", name:"Better Mixers",           cost:500,        type:"building", desc:"Candy Makers x2",                     effect:()=>{ getBuilding("candyMaker").bonusMult*=2; }, requires:[] },
+    { id:"u_cm2", name:"Super Makers",            cost:8000,       type:"building", desc:"Candy Makers x4",                     effect:()=>{ getBuilding("candyMaker").bonusMult*=4; }, requires:[] },
+    { id:"u_sp1",  name:"Fertilizer",             cost:2500,       type:"building", desc:"Sugar Plants x2",                     effect:()=>{ getBuilding("sugarPlant").bonusMult*=2; }, requires:[] },
+    { id:"u_sp2",  name:"Super Soil",             cost:40000,      type:"building", desc:"Sugar Plants x4",                     effect:()=>{ getBuilding("sugarPlant").bonusMult*=4; }, requires:[] },
+    { id:"u_cf1",  name:"Better Conveyor",        cost:15000,      type:"building", desc:"Candy Factories x2",                  effect:()=>{ getBuilding("candyFactory").bonusMult*=2; }, requires:[] },
+    { id:"u_cf2",  name:"Turbo Machines",         cost:200000,     type:"building", desc:"Candy Factories x4",                  effect:()=>{ getBuilding("candyFactory").bonusMult*=4; }, requires:[] },
+    { id:"u_cv1",  name:"Reinforced Vault",       cost:150000,     type:"building", desc:"Chocolate Vaults x2",                 effect:()=>{ getBuilding("chocolateVault").bonusMult*=2; }, requires:[] },
+    { id:"u_cv2",  name:"Infinite Storage",       cost:3000000,    type:"building", desc:"Chocolate Vaults x4",                 effect:()=>{ getBuilding("chocolateVault").bonusMult*=4; }, requires:[] },
+    { id:"u_cc1",  name:"Stabilized Core",        cost:2000000,    type:"building", desc:"Candy Cores x2",                      effect:()=>{ getBuilding("candyCore").bonusMult*=2; }, requires:[] },
+    { id:"u_dr1",  name:"Dimensional Anchor",     cost:30000000,   type:"building", desc:"Dimension Rifts x2",                  effect:()=>{ getBuilding("dimensionRift").bonusMult*=2; }, requires:[] },
+    { id:"u_im1",  name:"Loop Amplifier",         cost:500000000,  type:"building", desc:"Infinity Machines x2",                effect:()=>{ getBuilding("infinityMachine").bonusMult*=2; }, requires:[] },
+    { id:"u_ue1",  name:"Universal Harmony",      cost:1e10,       type:"building", desc:"Universe Engines x2",                 effect:()=>{ getBuilding("universeEngine").bonusMult*=2; }, requires:[] },
     { id:"u_cost6",  name:"Financial Collapse",   cost:1000000000, type:"cost",     desc:"Buildings cost -35%",                 effect:()=>{ state.costMult*=0.65; },            requires:[] },
     { id:"u_cost7",  name:"Infinite Wealth",      cost:2.5e13,     type:"cost",     desc:"Buildings cost -40%",                 effect:()=>{ state.costMult*=0.60; },            requires:[] },
     { id:"u_cost8",  name:"Economic Singularity", cost:6e15,       type:"cost",     desc:"Buildings cost -45%",                 effect:()=>{ state.costMult*=0.55; },            requires:[] },
@@ -1340,7 +1351,7 @@
     els.cps.textContent = formatNumber(getCPS(), 2);
     els.clickPower.textContent = formatNumber(state.clickPower);
     els.critChance.textContent = (Math.min(99, state.critChance * 100)).toFixed(1) + "%";
-    els.prestige.textContent = state.prestige;
+    els.prestigeLevel.textContent = state.prestige;
     els.prestigeTop.textContent = state.prestige;
   }
 
