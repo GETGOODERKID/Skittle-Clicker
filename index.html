@@ -818,8 +818,10 @@
 
   function getPrestigeGain() {
     const requiredEarned = 100000;
-    if (state.totalEarned < requiredEarned) return 0;
-    const newPoints = Math.max(0, Math.floor((Math.sqrt(state.totalEarned / requiredEarned) / 10) * state.prestigeGainMult));
+    // Avoid display/float mismatch (e.g. 99,999.9 showing as 100,000).
+    const earned = Math.floor(state.totalEarned + 1e-9);
+    if (earned < requiredEarned) return 0;
+    const newPoints = Math.max(0, Math.floor((Math.sqrt(earned / requiredEarned) / 10) * state.prestigeGainMult));
     return newPoints - (state.prestigePoints - state.lastPrestigeEarned);
   }
 
